@@ -1,25 +1,25 @@
 # Sprint-2: Desarrollo y mejora de Home , Cartera y perfil
 
-Este sprint trabajaremos en diferentes areas de desarrollo aplicando las mejoras correspondiente y generando pruebas de la applicacion con APIS
+Este sprint trabajaremos en diferentes áreas de desarrollo aplicando las mejoras correspondiente y generando pruebas de la applicacion con APIS
 
 # HOME
 
 ## Modificacion del navbar
-- Mercado: Se fucionara el Mercado junto con el descubrir por temas de que son lo mismo
+- Mercado: Se fusionará el Mercado junto con el descubrir por temas de que son lo mismo
 
-- Boton logo: Este nuevo elemento ira al medio del Navbar que funcionara como un flotante que aparecera de abajo a arriba con las opciones (Comprar,Vender y Convertir)
+- Botón logo: Este nuevo elemento irá al medio del Navbar que funcionará como un modal que aparecerá de abajo a arriba con las opciones (Comprar,Vender y Convertir)
 
-- Cartera: Agreremos elementos nuevos a la vista de cartera que sera un grafico con la diferentes monedas del usuario
+- Cartera: Agregaremos elementos nuevos a la vista de cartera que será un gráfico con la diferentes monedas del usuario
 
 -----
 ## Topbar
 
-Se implementaremos correctamente la Feature del sprint Pasado
+Se implementará correctamente la Feature del sprint Pasado
 
 ----
 ## Modificacion de Cartera
 
-Se implementara nuevas funcionalidades como el de Retirar y implementacion de una funcionalidad de un grafico con las monedas en posecion del usurio 
+Se implementará nuevas funcionalidades como el de Retirar y implementación de una funcionalidad de un gráfico con las monedas en posesión del usurio 
 
 ---
 # Vista de Perfil
