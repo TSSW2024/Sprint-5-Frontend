@@ -12,6 +12,10 @@ import 'views/depositar/depositar_dinero.dart';
 import 'services/profile.service.dart';
 import 'services/auth.service.dart';
 
+import 'views/comprar/comprar_screen.dart';
+import 'views/vender/vender_screen.dart';
+import 'views/intercambiar/intercambiar_screen.dart';
+
 void main() {
   runApp(const MainApp());
 }
@@ -36,6 +40,9 @@ class MainApp extends StatelessWidget {
           '/register': (context) => const RegistrationScreen(),
           '/home': (context) => const HomeScreen(),
           '/depositar': (context) => const DepositarDinero(),
+          '/comprar': (context) => const ComprarScreen(),
+          '/vender': (context) => const VenderScreen(),
+          '/intercambiar': (context) => const IntercambiarScreen(),
         },
       ),
     );
