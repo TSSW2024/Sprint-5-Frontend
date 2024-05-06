@@ -1,5 +1,7 @@
+// ignore_for_file: unnecessary_null_comparison
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 import '../../viewmodels/profile.viewmodel.dart';
 import '../../viewmodels/auth.viewmodel.dart';
 
@@ -28,49 +30,81 @@ class ProfileScreenState extends State<ProfileScreen> {
         ],
       ),
       body: Center(
-        child: buildBody(authViewModel, profileViewModel),
+        child: buildProfileSection(profileViewModel),
       ),
     );
   }
 
-  Widget buildBody(
-      AuthViewModel authViewModel, ProfileViewModel profileViewModel) {
-    if (authViewModel.isLoading) {
-      // Show a loading spinner while authentication is in progress
-      return const CircularProgressIndicator();
-    } else if (authViewModel.errorMessage != null) {
-      // Display the authentication error message
-      return Text(authViewModel.errorMessage!);
-    } else {
-      // Authentication is successful
-      return buildProfileSection(profileViewModel);
-    }
+  Widget buildBody(AuthViewModel authViewModel, ProfileViewModel profileViewModel) {
+    return Column(
+      children: <Widget>[
+        Text('Nombre: ${profileViewModel.profile.name}'),
+        Text('Email: ${profileViewModel.profile.email}'),
+        Image.network(profileViewModel.profile.imageUrl),
+      ],
+    );
+  }
   }
 
-  Widget buildProfileSection(ProfileViewModel profileViewModel) {
-    if (profileViewModel.isLoading) {
-      // Show a loading spinner while profile is loading
-      return const CircularProgressIndicator();
-    } else if (profileViewModel.errorMessage != null) {
-      // Display the profile error message
-      return Text(profileViewModel.errorMessage!);
-    } else if (profileViewModel.profile != null) {
-      // Display profile information
-      return Column(
+Widget buildProfileSection(ProfileViewModel profileViewModel) {
+  if (profileViewModel.isLoading != null && profileViewModel.isLoading!) {
+    // Show a loading spinner while profile is loading
+    return const CircularProgressIndicator();
+  } else if (profileViewModel.errorMessage != null) {
+    // Display the profile error message
+    return Text(profileViewModel.errorMessage!);
+  } else if (profileViewModel.profile != null) {
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text(
+        profileViewModel.profile.name,
+        style: const TextStyle(fontSize: 24),
+      ),
+      const SizedBox(height: 10),
+      Row(
         children: [
           CircleAvatar(
             radius: 50,
-            backgroundImage: NetworkImage(profileViewModel.profile!.photoUrl!),
+            backgroundImage: NetworkImage(profileViewModel.profile.imageUrl),
           ),
-          const SizedBox(height: 10), // Space between elements
-          Text('Nombre: ${profileViewModel.profile!.name}'),
-          Text('Email: ${profileViewModel.profile!.email}'),
-          Text('Teléfono: ${profileViewModel.profile!.phone}'),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Text(
+              profileViewModel.profile.email,
+              style: const TextStyle(fontSize: 16),
+            ),
+          ),
         ],
-      );
-    } else {
-      // Display a message if the profile is not available
-      return const Text('Perfil no disponible');
-    }
-  }
+      ),
+      const SizedBox(height: 10),
+      Expanded(
+        child: Container(
+          color: Colors.grey[200],
+          width: double.infinity,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                onPressed: () => launchUrlString(profileViewModel.profile.discordLink),
+                child: const Text('Discord'),
+              ),
+              ElevatedButton(
+                onPressed: () => launchUrlString(profileViewModel.profile.githubLink),
+                child: const Text('GitHub'),
+              ),
+              ElevatedButton(
+                onPressed: () => launchUrlString(profileViewModel.profile.facebookLink),
+                child: const Text('Facebook'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    ],
+  );
+} else {
+  // Display a message if the profile is not available
+  return const Text('Perfil no disponible');
+}
 }

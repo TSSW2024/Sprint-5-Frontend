@@ -7,6 +7,7 @@ import '../descubrir/descubrir.screen.dart';
 import '../mercado/mercado.screen.dart';
 import '../cartera/cartera.screen.dart';
 
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -54,6 +55,7 @@ class HomeScreenState extends State<HomeScreen> {
     });
   }
 
+
   @override
   Widget build(BuildContext context) {
     final authViewModel = Provider.of<AuthViewModel>(context);
@@ -64,6 +66,22 @@ class HomeScreenState extends State<HomeScreen> {
     }
 
     return Scaffold(
+          appBar: AppBar(
+      title: const Text('Utem Trading'),
+      actions: <Widget>[
+        IconButton(
+          icon: const Icon(Icons.person),
+          onPressed: () {
+            // Aquí puedes manejar la acción cuando se presiona el botón.
+            // Por ejemplo, puedes navegar a la pantalla de perfil.
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const ProfileScreen()),
+            );
+          },
+        ),
+      ],
+    ),
       body: PageView(
         controller: _pageController,
         onPageChanged: (index) {
