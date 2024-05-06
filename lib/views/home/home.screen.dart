@@ -7,6 +7,7 @@ import '../descubrir/descubrir.screen.dart';
 import '../mercado/mercado.screen.dart';
 import '../cartera/cartera.screen.dart';
 
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -47,73 +48,6 @@ class HomeScreenState extends State<HomeScreen> {
       );
     });
   }
-
-  void _showDescubrirModal(BuildContext context) {
-
-    double buttomNavBarWidth = MediaQuery.of(context).size.width;
-
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-      ),
-      builder: (BuildContext context) {
-        return DraggableScrollableSheet(
-          expand: false,
-          initialChildSize: 0.4,
-          minChildSize: 0.32,
-          maxChildSize: 0.9,
-          builder: (context, scrollController) => SingleChildScrollView(
-            controller: scrollController,
-            child: SizedBox(
-              width: buttomNavBarWidth,
-              child: Stack(
-                  alignment: AlignmentDirectional.topCenter,
-                  clipBehavior: Clip.none,
-                  children: [
-                    Positioned(
-                        top: -15,
-                        child: Container(
-                            width: 60,
-                            height: 7,
-                            decoration: BoxDecoration(
-                              color: Colors.grey[300],
-                              borderRadius: BorderRadius.circular(20),
-                            ))),
-                    Column(
-                      children: <Widget>[
-                        ListTile(
-                          leading: const Icon(Icons.shopping_cart),
-                          title: const Text('Comprar'),
-                          onTap: () {
-                            Navigator.pushNamed(context, '/comprar');
-                          },
-                        ),
-                        ListTile(
-                          leading: const Icon(Icons.sell),
-                          title: const Text('Vender'),
-                          onTap: () {
-                            Navigator.pushNamed(context, '/vender');
-                          },
-                        ),
-                        ListTile(
-                          leading: const Icon(Icons.swap_horiz),
-                          title: const Text('Intercambiar'),
-                          onTap: () {
-                            Navigator.pushNamed(context, '/intercambiar');
-                          },
-                        ),
-                      ],
-                    ),
-                  ]),
-            ),
-          ),
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final authViewModel = Provider.of<AuthViewModel>(context);
@@ -124,6 +58,22 @@ class HomeScreenState extends State<HomeScreen> {
     }
 
     return Scaffold(
+          appBar: AppBar(
+      title: const Text('Utem Trading'),
+      actions: <Widget>[
+        IconButton(
+          icon: const Icon(Icons.person),
+          onPressed: () {
+            // Aquí puedes manejar la acción cuando se presiona el botón.
+            // Por ejemplo, puedes navegar a la pantalla de perfil.
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const ProfileScreen()),
+            );
+          },
+        ),
+      ],
+    ),
       body: PageView(
         controller: _pageController,
         onPageChanged: (index) {

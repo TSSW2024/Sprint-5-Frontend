@@ -10,7 +10,7 @@ class ProfileService {
       name: 'Admin',
       email: 'admin@utem.cl',
       phone: '123456789',
-      photoUrl: 'https://example.com/profile_photo.jpg', // Sample photo URL
+      photoUrl: 'https://example.com/profile_photo.jpg', imageUrl: '', discordLink: '', githubLink: '', facebookLink: '', // Sample photo URL
     );
   }
 }
