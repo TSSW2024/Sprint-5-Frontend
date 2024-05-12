@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../../viewmodels/auth.viewmodel.dart';
-
 import '../descubrir/descubrir.screen.dart';
 import '../mercado/mercado.screen.dart';
 import '../cartera/cartera.screen.dart';
-
+import '../profile/profile.screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -101,7 +99,7 @@ class HomeScreenState extends State<HomeScreen> {
           currentIndex: _selectedIndex,
           onTap: (index) {
             if (index == 1) {
-              _showDescubrirModal(context);
+              //_showDescubrirModal(context);
               _onItemTapped(index);
             } else {
               _onItemTapped(index);
