@@ -48,21 +48,6 @@ class HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  void _showDescubrirModal(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      builder: (BuildContext context) {
-        return Container(
-          height: 200,
-          color: Color.fromARGB(255, 116, 52, 219),
-          child: Center(
-            child: Text('Contenido del modal Descubrir'),
-          ),
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final authViewModel = Provider.of<AuthViewModel>(context);
@@ -116,7 +101,7 @@ class HomeScreenState extends State<HomeScreen> {
           currentIndex: _selectedIndex,
           onTap: (index) {
             if (index == 1) {
-              _showDescubrirModal(context);
+              // _showDescubrirModal(context);
               _onItemTapped(index);
             } else {
               _onItemTapped(index);
