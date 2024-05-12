@@ -47,3 +47,11 @@ linux/flutter/generated_plugins.cmake
 macos/Flutter/GeneratedPluginRegistrant.swift
 windows/flutter/generated_plugin_registrant.cc
 windows/flutter/generated_plugins.cmake
+
+# Firebase things
+/firebase
+firebase.json
+firebase_options.dart
+
+# Google Services (e.g. APIs or Firebase)
+google-services.json
