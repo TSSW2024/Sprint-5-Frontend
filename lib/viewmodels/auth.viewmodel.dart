@@ -1,48 +1,42 @@
 import 'package:flutter/material.dart';
 import '../services/auth.service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthViewModel extends ChangeNotifier {
   final AuthService _authService;
 
-  AuthViewModel(this._authService);
-
+  User? get user => _authService.user;
+  bool get isAuthenticated => user != null;
   bool _isLoading = false;
-  String? _errorMessage;
-  bool _isAuthenticated = false;
-
   bool get isLoading => _isLoading;
+  String? _errorMessage;
   String? get errorMessage => _errorMessage;
-  bool get isAuthenticated => _isAuthenticated;
 
-  Future<void> login(String email, String password) async {
+  Future<String?> login(String email, String password) async {
     _startLoading();
-    try {
-      if (await _authService.login(email, password)) {
-        _isAuthenticated = true;
-        _errorMessage = null;
-      } else {
-        _errorMessage = 'Credenciales incorrectas';
-        _isAuthenticated = false;
-      }
-    } catch (e) {
-      _handleError('Error al iniciar sesión');
-    } finally {
-      _stopLoading();
+    final result = await _authService.login(email, password);
+    if (!result.success) {
+      _handleError(result.errorMessage!);
     }
+    _stopLoading();
+    return result.errorMessage;
+  }
+
+  Future<String?> register(String email, String password) async {
+    _startLoading();
+    final result = await _authService.register(email, password);
+    if (!result.success) {
+      _handleError(result.errorMessage!);
+    }
+    _stopLoading();
+    return result.errorMessage;
   }
 
   Future<void> signOut() async {
-    _startLoading();
-    try {
-      await _authService.signOut();
-      _isAuthenticated = false;
-      _errorMessage = null;
-    } catch (e) {
-      _handleError('Error al cerrar sesión');
-    } finally {
-      _stopLoading();
-    }
+    await _authService.signOut();
   }
+
+  AuthViewModel(this._authService);
 
   void _startLoading() {
     _isLoading = true;
