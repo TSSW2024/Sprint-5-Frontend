@@ -12,6 +12,12 @@ import '../profile/profile.screen.dart'; // se arreglo problema linea 71
 /* Si el usuario no está autenticado, o se acaba de cerrar la sesión, debería 
     navegar a la pantalla de inicio de sesión. 
 */
+
+// TODO: FLECHA DE RETORNO EN LA BARRA DE NAVEGACIÓN
+/* Actualmente se ve una flecha de retorno en la barra de navegación. 
+    Deberías ocultarla en la pantalla de inicio. Y arreglar el por qué
+    puedo volver a LoginScreen estando autenticado.
+*/
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 

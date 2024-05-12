@@ -1,3 +1,4 @@
+import 'package:ejemplo_1/utils/pubsub.dart';
 import 'package:ejemplo_1/widgets/social.login.dart';
 import 'package:ejemplo_1/widgets/text.form.global.dart';
 import 'package:flutter/material.dart';
@@ -65,6 +66,18 @@ class LoginScreenState extends State<LoginScreen> {
       }
     });
 
+    buildButton() => Container(
+          // TODO: este es un botón para probar la API de Pubsub, al menos por ahora, enviamos un mensaje de prueba
+          // hacia el servidor de Pubsub
+          alignment: Alignment.center,
+          child: ElevatedButton(
+            onPressed: () {
+              publishMessage('Este es un mensaje de prueba');
+            },
+            child: const Text('Publicar Mensaje'),
+          ),
+        );
+
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
@@ -86,6 +99,9 @@ class LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
+
+                buildButton(),
+
                 const SizedBox(height: 50),
 
                 const Text(

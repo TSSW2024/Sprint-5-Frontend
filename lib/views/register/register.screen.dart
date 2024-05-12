@@ -1,6 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import 'package:provider/provider.dart';
+import '../../viewmodels/auth.viewmodel.dart';
+import '../../widgets/loading.widget.dart';
+
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({super.key, Key? customKey});
 
@@ -40,6 +44,37 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Consume el authViewModel
+    final authViewModel = Provider.of<AuthViewModel>(context);
+
+    // Si el usuario ya está autenticado, navegar a /home
+    if (authViewModel.isAuthenticated) {
+      Future.microtask(() => Navigator.pushReplacementNamed(context, '/home'));
+    }
+
+    // Mostrar el LoadingWidget si está cargando
+    if (authViewModel.isLoading) {
+      return const Scaffold(
+        body: Center(
+          child: LoadingWidget(), // Usar el LoadingWidget aquí
+        ),
+      );
+    }
+
+    // Programar la muestra del SnackBar después de la construcción del widget
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (authViewModel.errorMessage != null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(authViewModel.errorMessage!),
+            backgroundColor: Colors.red,
+          ),
+        );
+        // Limpia el mensaje de error después de mostrar el SnackBar
+        authViewModel.clearErrorMessage();
+      }
+    });
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Registro'),
@@ -142,7 +177,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                        el viewmodel actual, contempla sólo el servicio de Autenticación
                        y no el de Perfil (debe crearse un nuevo servicio para el perfil)
                        que tenga relación con Firebase Firestore.
+
+                       El equipo de Backend debería preparar un microservicio
+                        que permita registrar a los usuarios en la base de datos para 
+                        eso usará el token que generea la autenticación de Firebase (SDK) 
                         */
+                      authViewModel.register(email, password);
                       if (kDebugMode) {
                         print(
                           'Usuario: $username\nContraseña: $password\nCorreo: $email\nFecha de nacimiento: $dob\n Documento: $doc\n',
