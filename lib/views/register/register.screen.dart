@@ -1,29 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key, Key? customKey});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Registro',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.indigo,
-          accentColor: Colors.orange,
-        ).copyWith(secondary: Colors.orange),
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: const RegistrationScreen(),
-    );
-  }
-}
-
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({super.key, Key? customKey});
 
@@ -158,7 +135,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       final dob = _selectedDate != null
                           ? '${_selectedDate!.day}/${_selectedDate!.month}/${_selectedDate!.year}'
                           : '';
-                      final doc = _docController.text;      
+                      final doc = _docController.text;
+
+                      /* TODO: Registro de usuario
+                       debe utilizar el Viewmodel para registrar al usuario
+                       el viewmodel actual, contempla sólo el servicio de Autenticación
+                       y no el de Perfil (debe crearse un nuevo servicio para el perfil)
+                       que tenga relación con Firebase Firestore.
+                        */
                       if (kDebugMode) {
                         print(
                           'Usuario: $username\nContraseña: $password\nCorreo: $email\nFecha de nacimiento: $dob\n Documento: $doc\n',
@@ -189,6 +173,3 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     super.dispose();
   }
 }
-
-
-

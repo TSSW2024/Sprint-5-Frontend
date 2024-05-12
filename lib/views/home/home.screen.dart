@@ -8,6 +8,10 @@ import '../mercado/mercado.screen.dart';
 import '../cartera/cartera.screen.dart';
 import '../profile/profile.screen.dart'; // se arreglo problema linea 71
 
+// TODO: MANEJAR EL ESTADO DE AUTENTICACIÓN
+/* Si el usuario no está autenticado, o se acaba de cerrar la sesión, debería 
+    navegar a la pantalla de inicio de sesión. 
+*/
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 

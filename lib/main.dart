@@ -20,11 +20,27 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Inicializar Firebase
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  runApp(const MainApp());
+  // Crear instancias de los servicios
+  final profileService = ProfileService();
+  final authService = AuthService();
+
+  // Configurar proveedores para los modelos de vista
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AuthViewModel(authService)),
+        ChangeNotifierProvider(create: (_) => ProfileViewModel(profileService)),
+      ],
+      child: const MainApp(),
+    ),
+  );
 }
 
 class MainApp extends StatelessWidget {
@@ -32,26 +48,18 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final profileService = ProfileService();
-    final authService = AuthService();
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => AuthViewModel(authService)),
-        ChangeNotifierProvider(create: (_) => ProfileViewModel(profileService)),
-      ],
-      child: MaterialApp(
-        title: 'Login App',
-        initialRoute: '/login',
-        routes: {
-          '/login': (context) => const LoginScreen(),
-          '/register': (context) => const RegistrationScreen(),
-          '/home': (context) => const HomeScreen(),
-          '/depositar': (context) => const DepositarDinero(),
-          '/comprar': (context) => const ComprarScreen(),
-          '/vender': (context) => const VenderScreen(),
-          '/intercambiar': (context) => const IntercambiarScreen(),
-        },
-      ),
+    return MaterialApp(
+      title: 'Login App',
+      initialRoute: '/login',
+      routes: {
+        '/login': (context) => const LoginScreen(),
+        '/register': (context) => const RegistrationScreen(),
+        '/home': (context) => const HomeScreen(),
+        '/depositar': (context) => const DepositarDinero(),
+        '/comprar': (context) => const ComprarScreen(),
+        '/vender': (context) => const VenderScreen(),
+        '/intercambiar': (context) => const IntercambiarScreen(),
+      },
     );
   }
 }
