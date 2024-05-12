@@ -4,7 +4,7 @@ import '../../viewmodels/auth.viewmodel.dart';
 import '../descubrir/descubrir.screen.dart';
 import '../mercado/mercado.screen.dart';
 import '../cartera/cartera.screen.dart';
-import '../profile/profile.screen.dart';
+import '../profile/profile.screen.dart'; // se arreglo problema linea 71
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -17,7 +17,6 @@ class HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   final PageController _pageController = PageController();
 
-  // Define una lista de mapas para los elementos del BottomNavigationBar
   final List<Map<String, dynamic>> _bottomNavItems = [
     {
       'icon': Icons.bar_chart,
@@ -46,6 +45,7 @@ class HomeScreenState extends State<HomeScreen> {
       );
     });
   }
+
   @override
   Widget build(BuildContext context) {
     final authViewModel = Provider.of<AuthViewModel>(context);
@@ -56,22 +56,22 @@ class HomeScreenState extends State<HomeScreen> {
     }
 
     return Scaffold(
-          appBar: AppBar(
-      title: const Text('Utem Trading'),
-      actions: <Widget>[
-        IconButton(
-          icon: const Icon(Icons.person),
-          onPressed: () {
-            // Aquí puedes manejar la acción cuando se presiona el botón.
-            // Por ejemplo, puedes navegar a la pantalla de perfil.
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const ProfileScreen()),
-            );
-          },
-        ),
-      ],
-    ),
+      appBar: AppBar(
+        title: const Text('Utem Trading'),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.person),
+            onPressed: () {
+              // Aquí puedes manejar la acción cuando se presiona el botón.
+              // Por ejemplo, puedes navegar a la pantalla de perfil.
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ProfileScreen()),
+              );
+            },
+          ),
+        ],
+      ),
       body: PageView(
         controller: _pageController,
         onPageChanged: (index) {
@@ -99,7 +99,7 @@ class HomeScreenState extends State<HomeScreen> {
           currentIndex: _selectedIndex,
           onTap: (index) {
             if (index == 1) {
-              //_showDescubrirModal(context);
+              // _showDescubrirModal(context);
               _onItemTapped(index);
             } else {
               _onItemTapped(index);

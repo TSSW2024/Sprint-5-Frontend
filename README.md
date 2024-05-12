@@ -1,27 +1,25 @@
-# Sprint-2: Desarrollo y mejora de Home , Cartera y perfil
+# Sprint-3 : se llevara a cabo la modificacion de la app eliminado opciones redundantes y desarrollando un entorno de gambling 
+Este sprint, nuestro equipo de desarrollo se enfocara en implementar mejoras en el diseño ya hecho y agregando nuevas funciones a cada vista ademas de mantener un app mas segura
+## Vista Opcion - Mercado 
+Se quiere que cuando se ingrese a esta vista tenga el titulo de la vista.
+- **Lupa:** Implementacion de una funcion de busqueda donde se desea que tenga la opcion de autocompletar
+- **Modificacion:** Se requiere trabajar en mejoras de manera visual a lo ya hecho teniendo una extensa lista de monedas con sus respectivo valor y su icono.
+- **Topbar:** Se Requiere mnejorar esta opcion 
 
-Este sprint trabajaremos en diferentes áreas de desarrollo aplicando las mejoras correspondiente y generando pruebas de la applicacion con APIS
+## Vista Opcion - Cartera
+Se quiere que cuando se ingrese a esta vista tenga el titulo de la vista.
+- **Grafico:** Implementacion de un grafico dando porcentajes de las monedas obtenidas
+- **Saldo:** Implementacion de nueva funcionalidad
+- **Lista de moneda:** implementacion de la lista de monedas en cartera
 
-# HOME
+## Vista opcion - Usuario
+- **Mejorar:** Se busca terminar la vista aplicando mejoras significativas
 
-## Modificacion del navbar
-- Mercado: Se fusionará el Mercado junto con el descubrir por temas de que son lo mismo
+## Vista opcion - Boton logo 
 
-- Botón logo: Este nuevo elemento irá al medio del Navbar que funcionará como un modal que aparecerá de abajo a arriba con las opciones (Comprar,Vender y Convertir)
+- **Opciones:** se implementaran 2 botones unicos 
+1. **Opcion loot gratis:** se implementara una nueva pagina donde se econtrara una caja con su valor
+2. **Opcion loot pagada:** se implementara una nueva pagina donde se econtrara una caja con su valor
 
-- Cartera: Agregaremos elementos nuevos a la vista de cartera que será un gráfico con la diferentes monedas del usuario
-
------
-## Topbar
-
-Se implementará correctamente la Feature del sprint Pasado
-
-----
-## Modificacion de Cartera
-
-Se implementará nuevas funcionalidades como el de Retirar y implementación de una funcionalidad de un gráfico con las monedas en posesión del usurio 
-
----
-# Vista de Perfil
-
-los usuarios experimentarán una interfaz interactiva y personalizada. Se implementará un campo de texto donde cada usuario podrá ingresar su nombre, asegurando una experiencia más cercana y directa. Además, se añadirá un campo de texto para el ID, proporcionando una capa adicional de seguridad y personalización. Para mantener a todos conectados, se implementará un campo de texto para el correo electrónico, facilitando la comunicación y las notificaciones importantes. Pensando en la expresión personal, se habilitará una opción para subir una foto, permitiendo a los usuarios darle un rostro a su perfil digital. Por último,se incluirá un enlace a los diferentes contactos sociales del Usuario.
+## Funcionalidad notificaciones 
+Se requiere generar notificacion en la app para atraer mejor atencion .
