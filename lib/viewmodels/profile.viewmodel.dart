@@ -5,7 +5,19 @@ import '../models/profile.model.dart';
 
 
 class ProfileViewModel extends ChangeNotifier {
-  Profile _profile = Profile(name: 'Aburik', email: 'babarca@utem.cl', imageUrl: 'https://pbs.twimg.com/media/GKQGCy7W8AAzYXT?format=png&name=small', phone: '', photoUrl: '', discordLink: 'https://discord.com/usuario', githubLink: 'https://github.com/TSSW2024', facebookLink: 'https://facebook.com/usuario');
+  Profile _profile = Profile(name: 'Aburik',
+   email: 'babarca@utem.cl', 
+   imageUrl: 'https://pbs.twimg.com/media/GKQGCy7W8AAzYXT?format=png&name=small', 
+   discordLink: 'https://discord.com/usuario', 
+   githubLink: 'https://github.com/TSSW2024', 
+   facebookLink: 'https://facebook.com/usuario',
+   saldototal: 1000.0,
+  monedas: {
+    'Bitcoin': 5,
+    'Ethereum': 3,
+    'Litecoin': 2,
+  }
+   );
 
   ProfileViewModel(ProfileService profileService);
 
