@@ -19,6 +19,12 @@ class _CarteraScreenState extends State<CarteraScreen> {
     var dataMap = profileViewModel.profile.monedas;
     var saldototal  = profileViewModel.profile.saldototal;
 
+    List<Color> pieColors = [
+      Colors.orange,
+      Colors.grey,
+      Colors.blue,
+    ];
+
     return Scaffold(
       appBar: AppBar(
       ),
@@ -41,11 +47,50 @@ class _CarteraScreenState extends State<CarteraScreen> {
                   child: SizedBox(
                   height: 200, 
                   width: 300, 
-                  child: PieChart(dataMap: dataMap),
+                  child: PieChart(
+                    dataMap: dataMap,
+                    colorList: pieColors,
+                    animationDuration: const Duration(milliseconds: 800),
                   )
                   )
-                )
+              )
+              )
               : const Text('No tiene saldo'),
+              const Align(
+              alignment: Alignment.centerLeft,
+                child: Text(
+                  'Lista de monedas:',
+                  style: TextStyle(fontSize: 20.0), 
+                ),
+              ),
+              Expanded(
+                child: ListView.builder(
+              itemCount: dataMap.length,
+              itemBuilder: (context, index) {
+                String key = dataMap.keys.elementAt(index);
+                return Card(
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      backgroundImage: AssetImage(profileViewModel.iconMap[key]!),
+                      radius: 30,
+                    ),
+                    title: Text(key),
+                    trailing: ElevatedButton(
+                      onPressed: () {
+                        //profileViewModel.venderMoneda(key);
+                      },
+                      style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                      const Color(0xFF515DE2)),
+                      ),
+                      child: const Text("Vender",
+                  style: TextStyle(color: Colors.white, fontSize: 13.9)),
+                    ),
+                  ),
+                );
+              },
+            ),
+              ),
           ],
         ),
       ),

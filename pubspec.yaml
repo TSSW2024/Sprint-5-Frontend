@@ -16,7 +16,7 @@ dependencies:
   flutter_svg: ^2.0.10+1
   url_launcher: ^6.2.6
   pie_chart: ^5.0.0
-  
+  charts_flutter: ^0.11.0  
 
 dev_dependencies:
   flutter_test:

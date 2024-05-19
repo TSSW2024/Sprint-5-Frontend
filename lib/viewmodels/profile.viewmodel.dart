@@ -18,6 +18,11 @@ class ProfileViewModel extends ChangeNotifier {
     'Litecoin': 2,
   }
    );
+    var iconMap = {
+      'Bitcoin': 'assets/images/bitcoin.png',
+      'Ethereum': 'assets/images/etherum.png',
+      'Litecoin': 'assets/images/litecoin.png',
+    };
 
   ProfileViewModel(ProfileService profileService);
 
