@@ -5,19 +5,20 @@ class Profile {
   final String discordLink;
   final String githubLink;
   final String facebookLink;
-  
+  final Map<String, double> monedas;
+  final double saldototal;
+
   Profile({
     required this.name, 
     required this.email, 
     required this.imageUrl, 
-    required String phone,
-    required String photoUrl,
     required this.discordLink,
     required this.githubLink,
     required this.facebookLink,
-    });
+    required this.monedas,
+    required this.saldototal,
+  });
 }
-
 
 
 
