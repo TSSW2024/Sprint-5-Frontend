@@ -13,8 +13,8 @@ class _DescubrirModalState extends State<DescubrirModal> {
   late Duration timeUntilNextLoot;
   late Timer timer;
   final LootFreeManager lootFreeManager = LootFreeManager({
-    'loot1': LootConfig(hours: 8, minutes: 0), // Configurar tiempo de loot1
-    'loot2': LootConfig(hours: 8, minutes: 0), // Configurar tiempo de loot2
+    'loot1': LootConfig(hours: 2, minutes: 38), // Configurar tiempo de loot1
+    'loot2': LootConfig(hours: 20, minutes: 0), // Configurar tiempo de loot2
   });
 
   @override

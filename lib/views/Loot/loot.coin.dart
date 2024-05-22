@@ -7,8 +7,9 @@ class Item {
   final String name;
   final double chance;
   final String imageUrl;
+  final double ganancia;
 
-  Item({required this.name, required this.chance, required this.imageUrl});
+  Item({required this.name, required this.chance, required this.imageUrl, required this.ganancia});
 }
 
 class CryptoLootBox extends StatefulWidget {
@@ -18,18 +19,18 @@ class CryptoLootBox extends StatefulWidget {
 
 class _CryptoLootBoxState extends State<CryptoLootBox> {
   final List<Item> items = [
-    Item(chance: 0.1, name: 'Bitcoin', imageUrl: 'assets/images/bitcoin.png'),
-    Item(chance: 0.2, name: 'Ethereum', imageUrl: 'assets/images/etherum.png'),
-    Item(chance: 0.3, name: 'Litecoin', imageUrl: 'assets/images/litecoin.png'),
-    Item(chance: 0.1, name: 'Tether', imageUrl: 'assets/images/tether.png'),
+    Item(chance: 0.1, name: 'Bitcoin', imageUrl: 'assets/images/bitcoin.png', ganancia: 0.112),
+    Item(chance: 0.2, name: 'Ethereum', imageUrl: 'assets/images/etherum.png', ganancia: 0.232),
+    Item(chance: 0.3, name: 'Litecoin', imageUrl: 'assets/images/litecoin.png', ganancia: 0.345),
+    Item(chance: 0.1, name: 'Tether', imageUrl: 'assets/images/tether.png', ganancia: 0.123),
     Item(
         chance: 0.1,
         name: 'Binance Coin',
-        imageUrl: 'assets/images/binance.png'),
-    Item(chance: 0.1, name: 'Ripple', imageUrl: 'assets/images/ripple.png'),
-    Item(chance: 0.05, name: 'Cardano', imageUrl: 'assets/images/cardano.png'),
+        imageUrl: 'assets/images/binance.png', ganancia: 0.123),
+    Item(chance: 0.1, name: 'Ripple', imageUrl: 'assets/images/ripple.png', ganancia: 0.453),
+    Item(chance: 0.05, name: 'Cardano', imageUrl: 'assets/images/cardano.png', ganancia: 0.663),
     Item(
-        chance: 0.05, name: 'Dogecoin', imageUrl: 'assets/images/dogecoin.png'),
+        chance: 0.05, name: 'Dogecoin', imageUrl: 'assets/images/dogecoin.png', ganancia: 0.123),
   ];
 
   Item? selectedItem;
@@ -159,9 +160,18 @@ class _CryptoLootBoxState extends State<CryptoLootBox> {
         if (selectedItem != null)
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Text(
-              '¡Ganaste ${selectedItem!.name}!',
-              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            child: Column(
+              children: [
+                Text(
+                  '¡Ganaste ${selectedItem!.name}!',
+                  style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  'Ganancia: ${selectedItem!.ganancia}',
+                  style: const TextStyle(fontSize: 18),
+                ),
+              ],
             ),
           ),
       ],
