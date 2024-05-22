@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../../viewmodels/auth.viewmodel.dart';
-
 import '../descubrir/descubrir.screen.dart';
 import '../mercado/mercado.screen.dart';
 import '../cartera/cartera.screen.dart';
 import '../profile/profile.screen.dart';
 import '../home/modal/modal.dart';
+import '../profile/profile.screen.dart'; // se arreglo problema linea 71
+
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -20,6 +20,7 @@ class HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   final PageController _pageController = PageController();
   DateTime lastLootFreeAccess = DateTime.now();
+
 
   // Define una lista de mapas para los elementos del BottomNavigationBar
   final List<Map<String, dynamic>> _bottomNavItems = [
@@ -105,7 +106,7 @@ class HomeScreenState extends State<HomeScreen> {
           currentIndex: _selectedIndex,
           onTap: (index) {
             if (index == 1) {
-              // Mostrar el modal
+
               showModalBottomSheet(
                 context: context,
                 builder: (BuildContext context) {

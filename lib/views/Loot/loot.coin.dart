@@ -10,6 +10,9 @@ class Item {
   final double ganancia;
 
   Item({required this.name, required this.chance, required this.imageUrl, required this.ganancia});
+
+
+
 }
 
 class CryptoLootBox extends StatefulWidget {
@@ -31,6 +34,7 @@ class _CryptoLootBoxState extends State<CryptoLootBox> {
     Item(chance: 0.05, name: 'Cardano', imageUrl: 'assets/images/cardano.png', ganancia: 0.663),
     Item(
         chance: 0.05, name: 'Dogecoin', imageUrl: 'assets/images/dogecoin.png', ganancia: 0.123),
+
   ];
 
   Item? selectedItem;
@@ -172,7 +176,8 @@ class _CryptoLootBoxState extends State<CryptoLootBox> {
                   style: const TextStyle(fontSize: 18),
                 ),
               ],
-            ),
+            )
+            
           ),
       ],
     );
