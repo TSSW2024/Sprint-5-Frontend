@@ -25,6 +25,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
+  carousel_slider:
+    dependency: "direct main"
+    description:
+      name: carousel_slider
+      sha256: "9c695cc963bf1d04a47bd6021f68befce8970bcd61d24938e1fb0918cf5d9c42"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.2.1"
   characters:
     dependency: transitive
     description:
@@ -97,11 +105,27 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.17.0"
+  ffi:
+    dependency: transitive
+    description:
+      name: ffi
+      sha256: "493f37e7df1804778ff3a53bd691d8692ddf69702cf4c1c1096a2e41b4779e21"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.2"
   flutter:
     dependency: "direct main"
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_countdown_timer:
+    dependency: "direct main"
+    description:
+      name: flutter_countdown_timer
+      sha256: dfcbd7d6f76a5589f78f3f3ba2f9ea2e199368eccc1adce4153ce985b9587bc5
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.1.0"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -136,6 +160,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.6.6"
+  graphs:
+    dependency: transitive
+    description:
+      name: graphs
+      sha256: aedc5a15e78fc65a6e23bcd927f24c64dd995062bcd1ca6eda65a3cff92a4d19
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.1"
   hexcolor:
     dependency: "direct main"
     description:
@@ -288,6 +320,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.1.2"
+  rive:
+    dependency: "direct main"
+    description:
+      name: rive
+      sha256: "255ab7892a77494458846cecee1376a017e64fd6b4130b51ec21424d12ffa6fe"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.13.4"
+  rive_common:
+    dependency: transitive
+    description:
+      name: rive_common
+      sha256: "3a0d95f529d52caef535d8ff32d75629ca37f7ab4707b13c83e9552a322557bc"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.4.8"
   sky_engine:
     dependency: transitive
     description: flutter

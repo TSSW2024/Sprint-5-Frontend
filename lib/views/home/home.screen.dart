@@ -5,6 +5,7 @@ import '../descubrir/descubrir.screen.dart';
 import '../mercado/mercado.screen.dart';
 import '../cartera/cartera.screen.dart';
 import '../profile/profile.screen.dart';
+import '../home/modal/modal.dart';
 import '../profile/profile.screen.dart'; // se arreglo problema linea 71
 
 
@@ -18,7 +19,10 @@ class HomeScreen extends StatefulWidget {
 class HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   final PageController _pageController = PageController();
+  DateTime lastLootFreeAccess = DateTime.now();
 
+
+  // Define una lista de mapas para los elementos del BottomNavigationBar
   final List<Map<String, dynamic>> _bottomNavItems = [
     {
       'icon': Icons.bar_chart,
@@ -26,7 +30,7 @@ class HomeScreenState extends State<HomeScreen> {
       'screen': const MercadoScreen(),
     },
     {
-      'icon': Icons.add_circle,
+      'icon': AssetImage('assets/images/logotrades.png'),
       'label': 'Descubrir',
       'screen': const DescubrirScreen(),
     },
@@ -81,8 +85,7 @@ class HomeScreenState extends State<HomeScreen> {
             _selectedIndex = index;
           });
         },
-        children:
-            _bottomNavItems.map((item) => item['screen'] as Widget).toList(),
+        children: _bottomNavItems.map((item) => item['screen'] as Widget).toList(),
       ),
       bottomNavigationBar: ClipRRect(
         borderRadius: const BorderRadius.only(
@@ -94,14 +97,24 @@ class HomeScreenState extends State<HomeScreen> {
         child: BottomNavigationBar(
           items: _bottomNavItems.map((item) {
             return BottomNavigationBarItem(
-              icon: Icon(item['icon']),
+              icon: item['icon'] is IconData 
+                ? Icon(item['icon']) 
+                : Image(image: item['icon'] as AssetImage, width: 40),
               label: item['label'],
             );
           }).toList(),
           currentIndex: _selectedIndex,
           onTap: (index) {
             if (index == 1) {
-              // _showDescubrirModal(context);
+
+              showModalBottomSheet(
+                context: context,
+                builder: (BuildContext context) {
+                  // Crear una instancia de DescubrirModal
+                  return DescubrirModal();
+                },
+              );
+
               _onItemTapped(index);
             } else {
               _onItemTapped(index);

@@ -7,14 +7,12 @@ import 'viewmodels/profile.viewmodel.dart';
 import 'views/home/home.screen.dart';
 import 'views/login/login.screen.dart';
 import 'views/register/register.screen.dart';
-import 'views/depositar/depositar_dinero.dart';
 
 import 'services/profile.service.dart';
 import 'services/auth.service.dart';
 
-import 'views/comprar/comprar_screen.dart';
-import 'views/vender/vender_screen.dart';
-import 'views/intercambiar/intercambiar_screen.dart';
+import 'views/Loot/loot.dart';
+import 'views/Loot/loot.Free.dart';
 
 void main() {
   runApp(const MainApp());
@@ -39,10 +37,8 @@ class MainApp extends StatelessWidget {
           '/login': (context) => const LoginScreen(),
           '/register': (context) => const RegistrationScreen(),
           '/home': (context) => const HomeScreen(),
-          '/depositar': (context) => const DepositarDinero(),
-          '/comprar': (context) => const ComprarScreen(),
-          '/vender': (context) => const VenderScreen(),
-          '/intercambiar': (context) => const IntercambiarScreen(),
+          '/Loot': (context) => const Loot(),
+          '/LootFree': (context) => const LootFree(),
         },
       ),
     );
