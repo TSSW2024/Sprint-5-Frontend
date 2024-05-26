@@ -4,7 +4,9 @@ import '../../viewmodels/auth.viewmodel.dart';
 import '../descubrir/descubrir.screen.dart';
 import '../mercado/mercado.screen.dart';
 import '../cartera/cartera.screen.dart';
+import '../profile/profile.screen.dart';
 import '../profile/profile.screen.dart'; // se arreglo problema linea 71
+
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
