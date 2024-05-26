@@ -19,6 +19,8 @@ dependencies:
   rive: ^0.13.4
   carousel_slider: ^4.2.1
   pie_chart: ^5.0.0
+  charts_flutter: ^0.11.0  
+  firebase_core: ^2.31.1
   charts_flutter: ^0.11.0
 
 dev_dependencies:
