@@ -33,11 +33,12 @@ class SaldoWidgetState extends State<SaldoWidget> {
           height: 100,
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
-            color: const Color(0xFF141738),
+            color: Color.fromARGB(255, 17, 20, 58),
             border: Border.all(
               color: Colors.black,
               width: 2,
             ),
+            borderRadius: BorderRadius.circular(20),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -73,15 +74,18 @@ class SaldoWidgetState extends State<SaldoWidget> {
                     children: [
                       if (isVisible)
                         Text(formatCurrency.format(widget.saldo),
-                            style: const TextStyle(fontSize: 36, color: Colors.white))
+                            style: const TextStyle(
+                                fontSize: 36, color: Colors.white))
                       else
                         Row(
                           children: List.generate(
                               6,
                               (index) => const Padding(
-                                    padding: EdgeInsets.symmetric(horizontal: 4.0),
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 4.0),
                                     child: Text("*",
-                                        style: TextStyle(fontSize: 36, color: Colors.white)),
+                                        style: TextStyle(
+                                            fontSize: 36, color: Colors.white)),
                                   )),
                         ),
                       const SizedBox(width: 220), // Espacio para los botones
@@ -98,15 +102,17 @@ class SaldoWidgetState extends State<SaldoWidget> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const DepositarDinero()),
+                                    builder: (context) =>
+                                        const DepositarDinero()),
                               );
                             },
                             style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all<Color>(
-                                  const Color(0xFF515DE2)),
+                                  Color.fromARGB(255, 189, 192, 5)),
                             ),
                             child: const Text("Depositar",
-                                style: TextStyle(color: Colors.white, fontSize: 13.9)),
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 13.9)),
                           ),
                         ),
                         const SizedBox(width: 10), // Espacio entre los botones
@@ -117,15 +123,17 @@ class SaldoWidgetState extends State<SaldoWidget> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const RetirarDinero()),
+                                    builder: (context) =>
+                                        const RetirarDinero()),
                               );
                             },
                             style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all<Color>(
-                                  const Color(0xFF515DE2)),
+                                  Color.fromARGB(255, 23, 206, 54)),
                             ),
                             child: const Text("Retirar",
-                                style: TextStyle(color: Colors.white, fontSize: 13.9)),
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 13.9)),
                           ),
                         ),
                       ],

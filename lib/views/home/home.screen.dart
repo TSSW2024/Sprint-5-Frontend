@@ -5,9 +5,7 @@ import '../descubrir/descubrir.screen.dart';
 import '../mercado/mercado.screen.dart';
 import '../cartera/cartera.screen.dart';
 import '../profile/profile.screen.dart';
-import '../home/modal/modal.dart';
-import '../profile/profile.screen.dart'; // se arreglo problema linea 71
-
+import '../home/modal/modal.dart'; // se arreglo problema linea 71
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -21,7 +19,6 @@ class HomeScreenState extends State<HomeScreen> {
   final PageController _pageController = PageController();
   DateTime lastLootFreeAccess = DateTime.now();
 
-
   // Define una lista de mapas para los elementos del BottomNavigationBar
   final List<Map<String, dynamic>> _bottomNavItems = [
     {
@@ -31,7 +28,7 @@ class HomeScreenState extends State<HomeScreen> {
     },
     {
       'icon': AssetImage('assets/images/logotrades.png'),
-      'label': 'Descubrir',
+      'label': 'UtemTX',
       'screen': const DescubrirScreen(),
     },
     {
@@ -85,28 +82,28 @@ class HomeScreenState extends State<HomeScreen> {
             _selectedIndex = index;
           });
         },
-        children: _bottomNavItems.map((item) => item['screen'] as Widget).toList(),
+        children:
+            _bottomNavItems.map((item) => item['screen'] as Widget).toList(),
       ),
       bottomNavigationBar: ClipRRect(
         borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
-          bottomLeft: Radius.circular(20),
-          bottomRight: Radius.circular(20),
+          topLeft: Radius.circular(0),
+          topRight: Radius.circular(0),
+          bottomLeft: Radius.circular(0),
+          bottomRight: Radius.circular(0),
         ),
         child: BottomNavigationBar(
           items: _bottomNavItems.map((item) {
             return BottomNavigationBarItem(
-              icon: item['icon'] is IconData 
-                ? Icon(item['icon']) 
-                : Image(image: item['icon'] as AssetImage, width: 40),
+              icon: item['icon'] is IconData
+                  ? Icon(item['icon'])
+                  : Image(image: item['icon'] as AssetImage, width: 40),
               label: item['label'],
             );
           }).toList(),
           currentIndex: _selectedIndex,
           onTap: (index) {
             if (index == 1) {
-
               showModalBottomSheet(
                 context: context,
                 builder: (BuildContext context) {
@@ -120,7 +117,7 @@ class HomeScreenState extends State<HomeScreen> {
               _onItemTapped(index);
             }
           },
-          backgroundColor: Colors.blue,
+          backgroundColor: Color.fromARGB(255, 7, 94, 177),
           selectedItemColor: Colors.white,
           unselectedItemColor: Colors.white,
           selectedFontSize: 14,
