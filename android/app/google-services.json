@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "410322503600",
+    "project_id": "tss-1s2024",
+    "storage_bucket": "tss-1s2024.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:410322503600:android:7d2791991f434870d57875",
+        "android_client_info": {
+          "package_name": "com.example.ejemplo_1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrBIG-qE6tYRRSFBAOpn40Ko-aP2GMHug"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
