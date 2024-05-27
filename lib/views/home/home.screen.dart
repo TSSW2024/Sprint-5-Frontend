@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 // import 'package:provider/provider.dart';
 
 // import '../../viewmodels/auth.viewmodel.dart';
-
+import 'package:provider/provider.dart';
+import '../../viewmodels/auth.viewmodel.dart';
 import '../descubrir/descubrir.screen.dart';
 import '../mercado/mercado.screen.dart';
 import '../cartera/cartera.screen.dart';
 import '../profile/profile.screen.dart';
 //import '../profile/profile.screen.dart';
+import '../home/modal/modal.dart'; // se arreglo problema linea 71
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -19,7 +21,9 @@ class HomeScreen extends StatefulWidget {
 class HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   final PageController _pageController = PageController();
+  DateTime lastLootFreeAccess = DateTime.now();
 
+  // Define una lista de mapas para los elementos del BottomNavigationBar
   final List<Map<String, dynamic>> _bottomNavItems = [
     {
       'icon': Icons.bar_chart,
@@ -27,8 +31,8 @@ class HomeScreenState extends State<HomeScreen> {
       'screen': const MercadoScreen(),
     },
     {
-      'icon': Icons.add_circle,
-      'label': 'Descubrir',
+      'icon': AssetImage('assets/images/logotrades.png'),
+      'label': 'UtemTX',
       'screen': const DescubrirScreen(),
     },
     {
@@ -87,28 +91,37 @@ class HomeScreenState extends State<HomeScreen> {
       ),
       bottomNavigationBar: ClipRRect(
         borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
-          bottomLeft: Radius.circular(20),
-          bottomRight: Radius.circular(20),
+          topLeft: Radius.circular(0),
+          topRight: Radius.circular(0),
+          bottomLeft: Radius.circular(0),
+          bottomRight: Radius.circular(0),
         ),
         child: BottomNavigationBar(
           items: _bottomNavItems.map((item) {
             return BottomNavigationBarItem(
-              icon: Icon(item['icon']),
+              icon: item['icon'] is IconData
+                  ? Icon(item['icon'])
+                  : Image(image: item['icon'] as AssetImage, width: 40),
               label: item['label'],
             );
           }).toList(),
           currentIndex: _selectedIndex,
           onTap: (index) {
             if (index == 1) {
-              // _showDescubrirModal(context);
+              showModalBottomSheet(
+                context: context,
+                builder: (BuildContext context) {
+                  // Crear una instancia de DescubrirModal
+                  return DescubrirModal();
+                },
+              );
+
               _onItemTapped(index);
             } else {
               _onItemTapped(index);
             }
           },
-          backgroundColor: Colors.blue,
+          backgroundColor: Color.fromARGB(255, 7, 94, 177),
           selectedItemColor: Colors.white,
           unselectedItemColor: Colors.white,
           selectedFontSize: 14,

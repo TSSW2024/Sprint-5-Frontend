@@ -9,8 +9,9 @@ class ProfileService {
     return Profile(
       name: 'Admin',
       email: 'admin@utem.cl',
-      phone: '123456789',
-      photoUrl: 'https://example.com/profile_photo.jpg', imageUrl: '', discordLink: '', githubLink: '', facebookLink: '', // Sample photo URL
+      imageUrl: 'https://example.com/profile_photo.jpg', discordLink: '', githubLink: '', facebookLink: '',  // Sample photo URL
+      monedas: {'amount': 0.0},
+      saldototal: 0.0,
     );
   }
 }

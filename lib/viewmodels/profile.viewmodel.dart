@@ -3,9 +3,26 @@ import 'package:flutter/material.dart';
 import '../models/profile.model.dart';
 //import '../services/profile.service.dart';
 
-
 class ProfileViewModel extends ChangeNotifier {
-  Profile _profile = Profile(name: 'Aburik', email: 'babarca@utem.cl', imageUrl: 'https://pbs.twimg.com/media/GKQGCy7W8AAzYXT?format=png&name=small', phone: '', photoUrl: '', discordLink: 'https://discord.com/usuario', githubLink: 'https://github.com/TSSW2024', facebookLink: 'https://facebook.com/usuario');
+  Profile _profile = Profile(
+      name: 'Aburik',
+      email: 'babarca@utem.cl',
+      imageUrl:
+          'https://pbs.twimg.com/media/GKQGCy7W8AAzYXT?format=png&name=small',
+      discordLink: 'https://discord.com/usuario',
+      githubLink: 'https://github.com/TSSW2024',
+      facebookLink: 'https://facebook.com/usuario',
+      saldototal: 1000.0,
+      monedas: {
+        'Bitcoin': 55,
+        'Ethereum': 15,
+        'Litecoin': 20,
+      });
+  var iconMap = {
+    'Bitcoin': 'assets/images/bitcoin.png',
+    'Ethereum': 'assets/images/etherum.png',
+    'Litecoin': 'assets/images/litecoin.png',
+  };
 
   ProfileViewModel(ProfileService profileService);
 
