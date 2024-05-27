@@ -34,7 +34,7 @@ class MainApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'Login App',
-        initialRoute: '/login',
+        initialRoute: '/home',
         routes: {
           '/login': (context) => const LoginScreen(),
           '/register': (context) => const RegistrationScreen(),

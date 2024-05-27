@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+// import 'package:provider/provider.dart';
 
-import '../../viewmodels/auth.viewmodel.dart';
+// import '../../viewmodels/auth.viewmodel.dart';
 
 import '../descubrir/descubrir.screen.dart';
 import '../mercado/mercado.screen.dart';
@@ -51,12 +51,12 @@ class HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final authViewModel = Provider.of<AuthViewModel>(context);
+    // final authViewModel = Provider.of<AuthViewModel>(context);
 
-    // Si el usuario no está autenticado, navega a /login
-    if (!authViewModel.isAuthenticated) {
-      Future.microtask(() => Navigator.pushReplacementNamed(context, '/login'));
-    }
+    // // Si el usuario no está autenticado, navega a /login
+    // if (!authViewModel.isAuthenticated) {
+    //   Future.microtask(() => Navigator.pushReplacementNamed(context, '/login'));
+    // }
 
     return Scaffold(
       appBar: AppBar(

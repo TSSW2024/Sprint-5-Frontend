@@ -94,7 +94,7 @@ class SaldoWidgetState extends State<SaldoWidget> {
                         );
                       },
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
+                        backgroundColor: WidgetStateProperty.all<Color>(
                             const Color(0xFF515DE2)),
                       ),
                       child: const Text("Depositar",
