@@ -1,18 +1,17 @@
 import 'dart:convert';
-// ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
 import '../models/criptomoneda.dart';
 
 class BinanceService {
-  Future<List<Criptomoneda>> fetchCriptomonedas() async {
-    final response =
-        await http.get(Uri.parse('http://yourbackend.com/api/criptomonedas'));
+  Future<Criptomoneda> fetchCriptomoneda(String symbol) async {
+    final response = await http.get(Uri.parse(
+        'https://template-go-vercel-xi-two.vercel.app/api/cryptoprice/?symbol=$symbol'));
 
     if (response.statusCode == 200) {
-      List<dynamic> data = json.decode(response.body);
-      return data.map((json) => Criptomoneda.fromJson(json)).toList();
+      Map<String, dynamic> data = json.decode(response.body);
+      return Criptomoneda.fromJson(symbol, data);
     } else {
-      throw Exception('Failed to load criptomonedas');
+      throw Exception('Failed to load criptomoneda');
     }
   }
 }

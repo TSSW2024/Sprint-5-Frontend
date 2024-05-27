@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+// import 'package:provider/provider.dart';
+
+// import '../../viewmodels/auth.viewmodel.dart';
 import 'package:provider/provider.dart';
 import '../../viewmodels/auth.viewmodel.dart';
 import '../descubrir/descubrir.screen.dart';
 import '../mercado/mercado.screen.dart';
 import '../cartera/cartera.screen.dart';
 import '../profile/profile.screen.dart';
+//import '../profile/profile.screen.dart';
 import '../home/modal/modal.dart'; // se arreglo problema linea 71
 
 class HomeScreen extends StatefulWidget {
@@ -51,12 +55,12 @@ class HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final authViewModel = Provider.of<AuthViewModel>(context);
+    // final authViewModel = Provider.of<AuthViewModel>(context);
 
-    // Si el usuario no está autenticado, navega a /login
-    if (!authViewModel.isAuthenticated) {
-      Future.microtask(() => Navigator.pushReplacementNamed(context, '/login'));
-    }
+    // // Si el usuario no está autenticado, navega a /login
+    // if (!authViewModel.isAuthenticated) {
+    //   Future.microtask(() => Navigator.pushReplacementNamed(context, '/login'));
+    // }
 
     return Scaffold(
       appBar: AppBar(

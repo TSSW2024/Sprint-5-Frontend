@@ -69,6 +69,37 @@ class SaldoWidgetState extends State<SaldoWidget> {
               const SizedBox(height: 0.5),
               Stack(
                 children: [
+                  if (isVisible)
+                    Text(formatCurrency.format(widget.saldo),
+                        style:
+                            const TextStyle(fontSize: 36, color: Colors.white))
+                  else
+                    Row(
+                      children: List.generate(
+                          6,
+                          (index) => const Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 4.0),
+                                child: Text("*",
+                                    style: TextStyle(
+                                        fontSize: 36, color: Colors.white)),
+                              )),
+                    ),
+                  SizedBox(
+                    width: 120,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const DepositarDinero()),
+                        );
+                      },
+                      style: ButtonStyle(
+                        backgroundColor: WidgetStateProperty.all<Color>(
+                            const Color(0xFF515DE2)),
+                      ),
+                      child: const Text("Depositar",
+                          style: TextStyle(color: Colors.white, fontSize: 16)),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
