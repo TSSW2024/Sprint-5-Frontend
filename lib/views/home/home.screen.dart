@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
-// import 'package:provider/provider.dart';
-
-// import '../../viewmodels/auth.viewmodel.dart';
 import 'package:provider/provider.dart';
 import '../../viewmodels/auth.viewmodel.dart';
 import '../descubrir/descubrir.screen.dart';
 import '../mercado/mercado.screen.dart';
 import '../cartera/cartera.screen.dart';
 import '../profile/profile.screen.dart';
-//import '../profile/profile.screen.dart';
-import '../home/modal/modal.dart'; // se arreglo problema linea 71
+import '../home/modal/modal.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -33,7 +29,7 @@ class HomeScreenState extends State<HomeScreen> {
     {
       'icon': AssetImage('assets/images/logotrades.png'),
       'label': 'UtemTX',
-      'screen': const DescubrirScreen(),
+      'screen': null, // No asignar una pantalla a "Descubrir"
     },
     {
       'icon': Icons.account_balance_wallet,
@@ -43,24 +39,33 @@ class HomeScreenState extends State<HomeScreen> {
   ];
 
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-      _pageController.animateToPage(
-        index,
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
+    if (index == 1) {
+      showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return DescubrirModal();
+        },
       );
-    });
+    } else {
+      setState(() {
+        _selectedIndex = index;
+        _pageController.animateToPage(
+          index,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeInOut,
+        );
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    // final authViewModel = Provider.of<AuthViewModel>(context);
+    final authViewModel = Provider.of<AuthViewModel>(context);
 
-    // // Si el usuario no está autenticado, navega a /login
-    // if (!authViewModel.isAuthenticated) {
-    //   Future.microtask(() => Navigator.pushReplacementNamed(context, '/login'));
-    // }
+    // Si el usuario no está autenticado, navega a /login
+    if (!authViewModel.isAuthenticated) {
+      Future.microtask(() => Navigator.pushReplacementNamed(context, '/login'));
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -86,8 +91,10 @@ class HomeScreenState extends State<HomeScreen> {
             _selectedIndex = index;
           });
         },
-        children:
-            _bottomNavItems.map((item) => item['screen'] as Widget).toList(),
+        children: _bottomNavItems
+            .where((item) => item['screen'] != null)
+            .map((item) => item['screen'] as Widget)
+            .toList(),
       ),
       bottomNavigationBar: ClipRRect(
         borderRadius: const BorderRadius.only(
@@ -106,22 +113,8 @@ class HomeScreenState extends State<HomeScreen> {
             );
           }).toList(),
           currentIndex: _selectedIndex,
-          onTap: (index) {
-            if (index == 1) {
-              showModalBottomSheet(
-                context: context,
-                builder: (BuildContext context) {
-                  // Crear una instancia de DescubrirModal
-                  return DescubrirModal();
-                },
-              );
-
-              _onItemTapped(index);
-            } else {
-              _onItemTapped(index);
-            }
-          },
-          backgroundColor: Color.fromARGB(255, 7, 94, 177),
+          onTap: _onItemTapped,
+          backgroundColor: const Color.fromARGB(255, 7, 94, 177),
           selectedItemColor: Colors.white,
           unselectedItemColor: Colors.white,
           selectedFontSize: 14,

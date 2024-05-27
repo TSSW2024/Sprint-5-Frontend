@@ -30,10 +30,10 @@ class SaldoWidgetState extends State<SaldoWidget> {
         alignment: Alignment.center,
         child: Container(
           width: 444,
-          height: 100,
+          height: 200, // Ajusté la altura para acomodar los botones
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
-            color: Color.fromARGB(255, 17, 20, 58),
+            color: const Color.fromARGB(255, 17, 20, 58),
             border: Border.all(
               color: Colors.black,
               width: 2,
@@ -66,108 +66,82 @@ class SaldoWidgetState extends State<SaldoWidget> {
                   ),
                 ],
               ),
-              const SizedBox(height: 0.5),
+              const SizedBox(height: 10),
               Stack(
                 children: [
                   if (isVisible)
-                    Text(formatCurrency.format(widget.saldo),
-                        style:
-                            const TextStyle(fontSize: 36, color: Colors.white))
+                    Text(
+                      formatCurrency.format(widget.saldo),
+                      style: const TextStyle(
+                        fontSize: 36,
+                        color: Colors.white,
+                      ),
+                    )
                   else
                     Row(
                       children: List.generate(
-                          6,
-                          (index) => const Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 4.0),
-                                child: Text("*",
-                                    style: TextStyle(
-                                        fontSize: 36, color: Colors.white)),
-                              )),
+                        6,
+                        (index) => const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 4.0),
+                          child: Text(
+                            "*",
+                            style: TextStyle(
+                              fontSize: 36,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
+                ],
+              ),
+              const SizedBox(height: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
                   SizedBox(
-                    width: 120,
+                    width: 110,
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const DepositarDinero()),
+                            builder: (context) => const DepositarDinero(),
+                          ),
                         );
                       },
                       style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all<Color>(
-                            const Color(0xFF515DE2)),
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                          const Color.fromARGB(255, 189, 192, 5),
+                        ),
                       ),
-                      child: const Text("Depositar",
-                          style: TextStyle(color: Colors.white, fontSize: 16)),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      if (isVisible)
-                        Text(formatCurrency.format(widget.saldo),
-                            style: const TextStyle(
-                                fontSize: 36, color: Colors.white))
-                      else
-                        Row(
-                          children: List.generate(
-                              6,
-                              (index) => const Padding(
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 4.0),
-                                    child: Text("*",
-                                        style: TextStyle(
-                                            fontSize: 36, color: Colors.white)),
-                                  )),
-                        ),
-                      const SizedBox(width: 220), // Espacio para los botones
-                    ],
+                      child: const Text(
+                        "Depositar",
+                        style: TextStyle(color: Colors.white, fontSize: 13.9),
+                      ),
+                    ),
                   ),
-                  Positioned(
-                    right: 0,
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          width: 110,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const DepositarDinero()),
-                              );
-                            },
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  Color.fromARGB(255, 189, 192, 5)),
-                            ),
-                            child: const Text("Depositar",
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 13.9)),
+                  const SizedBox(width: 10), // Espacio entre los botones
+                  SizedBox(
+                    width: 110,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const RetirarDinero(),
                           ),
+                        );
+                      },
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                          const Color.fromARGB(255, 23, 206, 54),
                         ),
-                        const SizedBox(width: 10), // Espacio entre los botones
-                        SizedBox(
-                          width: 110,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const RetirarDinero()),
-                              );
-                            },
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  Color.fromARGB(255, 23, 206, 54)),
-                            ),
-                            child: const Text("Retirar",
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 13.9)),
-                          ),
-                        ),
-                      ],
+                      ),
+                      child: const Text(
+                        "Retirar",
+                        style: TextStyle(color: Colors.white, fontSize: 13.9),
+                      ),
                     ),
                   ),
                 ],

@@ -52,7 +52,8 @@ class MercadoScreen extends StatelessWidget {
                   Container(
                     color: Colors.transparent,
                     child: TabBar(
-                      overlayColor: WidgetStateProperty.all(Colors.transparent),
+                      overlayColor:
+                          MaterialStateProperty.all(Colors.transparent),
                       indicatorSize: TabBarIndicatorSize.tab,
                       indicator: BoxDecoration(
                         borderRadius: BorderRadius.circular(50),
