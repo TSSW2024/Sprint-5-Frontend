@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../home/saldo/saldo.dart';
 import '../cartera/recomendaciones_ad.dart'; // muestra un anuncio en pantalla @moizefal4
 import '../../viewmodels/profile.viewmodel.dart';
+import '../cartera/moneda.dart';
 
 class CarteraScreen extends StatefulWidget {
   const CarteraScreen({super.key});
@@ -75,7 +76,13 @@ class _CarteraScreenState extends State<CarteraScreen> {
                       title: Text(key),
                       trailing: ElevatedButton(
                         onPressed: () {
-                          //profileViewModel.venderMoneda(key);
+                            Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => MonedaPage(
+                              ),
+                            ),
+                            );
                         },
                         style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all<Color>(
