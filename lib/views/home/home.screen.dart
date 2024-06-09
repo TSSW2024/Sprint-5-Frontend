@@ -6,6 +6,7 @@ import '../mercado/mercado.screen.dart';
 import '../cartera/cartera.screen.dart';
 import '../profile/profile.screen.dart';
 import '../home/modal/modal.dart';
+import '../compra/compra_view.dart'; // Asegúrate de importar la vista de compra
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -36,6 +37,11 @@ class HomeScreenState extends State<HomeScreen> {
       'label': 'Cartera',
       'screen': const CarteraScreen(),
     },
+    {
+      'icon': Icons.shopping_cart,
+      'label': 'Comprar',
+      'screen': CompraView(), // Agregar la pantalla de compra
+    },
   ];
 
   void _onItemTapped(int index) {
@@ -45,6 +51,12 @@ class HomeScreenState extends State<HomeScreen> {
         builder: (BuildContext context) {
           return DescubrirModal();
         },
+      );
+    } else if (index == 3) {
+      // Verifica si el índice es el de compra
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => CompraView()),
       );
     } else {
       setState(() {
