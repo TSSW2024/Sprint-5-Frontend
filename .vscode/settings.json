@@ -1,3 +1,4 @@
 {
-    "cmake.configureOnOpen": true
+    "cmake.configureOnOpen": true,
+    "cmake.sourceDirectory": "C:/Users/Aburik/Desktop/Sprint 4/Sprint-4-Frontend/linux/flutter"
 }

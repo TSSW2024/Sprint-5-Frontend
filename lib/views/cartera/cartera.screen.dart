@@ -76,21 +76,19 @@ class _CarteraScreenState extends State<CarteraScreen> {
                       title: Text(key),
                       trailing: ElevatedButton(
                         onPressed: () {
-                            Navigator.push(
+                          Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) => MonedaPage(
+                                monedaNombre: key,
                               ),
                             ),
-                            );
+                          );
                         },
                         style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(
-                              Color.fromARGB(255, 23, 206, 54)),
+                          backgroundColor: MaterialStateProperty.all<Color>(Color.fromARGB(255, 23, 206, 54)),
                         ),
-                        child: const Text("Vender",
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 13.9)),
+                        child: const Text("Vender", style: TextStyle(color: Colors.white, fontSize: 13.9)),
                       ),
                     ),
                   );
