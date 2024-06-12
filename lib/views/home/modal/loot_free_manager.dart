@@ -17,7 +17,6 @@ class LootFreeManager {
 
   Duration timeUntilNextLoot(String lootKey) {
     DateTime now = DateTime.now();
-    LootConfig lootConfig = lootConfigs[lootKey]!;
     DateTime nextLootTime = _getNextLootTime(now, lootConfigs['loot1']!, lootConfigs['loot2']!);
     return nextLootTime.difference(now);
   }
