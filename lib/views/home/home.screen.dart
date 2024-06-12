@@ -6,7 +6,8 @@ import '../mercado/mercado.screen.dart';
 import '../cartera/cartera.screen.dart';
 import '../profile/profile.screen.dart';
 import '../home/modal/modal.dart';
-import '../compra/compra_view.dart'; // Asegúrate de importar la vista de compra
+import '../compra/compra_view.dart';
+import '../convertir/convertir_view.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -36,11 +37,6 @@ class HomeScreenState extends State<HomeScreen> {
       'icon': Icons.account_balance_wallet,
       'label': 'Cartera',
       'screen': const CarteraScreen(),
-    },
-    {
-      'icon': Icons.shopping_cart,
-      'label': 'Comprar',
-      'screen': CompraView(), // Agregar la pantalla de compra
     },
   ];
 
