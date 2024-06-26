@@ -5,7 +5,7 @@ class Profile {
   final String discordLink;
   final String githubLink;
   final String facebookLink;
-  final Map<String, double> monedas;
+  final Map<String, Map<String, dynamic>> monedas;
   final double saldototal;
 
   Profile({
