@@ -1,26 +1,26 @@
 import 'package:ejemplo_1/services/profile.service.dart';
 import 'package:flutter/material.dart';
 import '../models/profile.model.dart';
-//import '../services/profile.service.dart';
 
 class ProfileViewModel extends ChangeNotifier {
   Profile _profile = Profile(
-      name: 'Aburik',
-      email: 'babarca@utem.cl',
-      imageUrl:
-          'https://pbs.twimg.com/media/GKQGCy7W8AAzYXT?format=png&name=small',
-      discordLink: 'https://discord.com/usuario',
-      githubLink: 'https://github.com/TSSW2024',
-      facebookLink: 'https://facebook.com/usuario',
-      saldototal: 1000.0,
-      monedas: {
-        'Bitcoin': 55,
-        'Ethereum': 15,
-        'Litecoin': 20,
-      });
+    name: 'Aburik',
+    email: 'babarca@utem.cl',
+    imageUrl: 'https://pbs.twimg.com/media/GKQGCy7W8AAzYXT?format=png&name=small',
+    discordLink: 'https://discord.com/usuario',
+    githubLink: 'https://github.com/TSSW2024',
+    facebookLink: 'https://facebook.com/usuario',
+    saldototal: 1000.0,
+    monedas: {
+      'Bitcoin': {'value': 55, 'symbol': 'BTC'},
+      'Ethereum': {'value': 15, 'symbol': 'ETH'},
+      'Litecoin': {'value': 20, 'symbol': 'LTC'},
+    },
+  );
+
   var iconMap = {
     'Bitcoin': 'assets/images/bitcoin.png',
-    'Ethereum': 'assets/images/etherum.png',
+    'Ethereum': 'assets/images/ethereum.png',
     'Litecoin': 'assets/images/litecoin.png',
   };
 
