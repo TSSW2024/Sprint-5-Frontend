@@ -10,7 +10,7 @@ class ProfileService {
       name: 'Admin',
       email: 'admin@utem.cl',
       imageUrl: 'https://example.com/profile_photo.jpg', discordLink: '', githubLink: '', facebookLink: '',  // Sample photo URL
-      monedas: {'amount': 0.0},
+      monedas: {'amount': {'value': 0.0}},
       saldototal: 0.0,
     );
   }

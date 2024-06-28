@@ -17,7 +17,7 @@ class _CarteraScreenState extends State<CarteraScreen> {
   @override
   Widget build(BuildContext context) {
     var profileViewModel = Provider.of<ProfileViewModel>(context);
-    var dataMap = profileViewModel.profile.monedas;
+    var dataMap = profileViewModel.profile.monedas.map((key, value) => MapEntry(key, value['value'].toDouble())); // Convertir a Map<String, double>
     var saldototal = profileViewModel.profile.saldototal;
 
     List<Color> pieColors = [
@@ -49,7 +49,6 @@ class _CarteraScreenState extends State<CarteraScreen> {
                               height: 200,
                               width: 300,
                               child: PieChart(
-                                dataMap: dataMap,
                                 colorList: pieColors,
                                 animationDuration:
                                     const Duration(milliseconds: 800),
@@ -71,8 +70,7 @@ class _CarteraScreenState extends State<CarteraScreen> {
                   return Card(
                     child: ListTile(
                       leading: CircleAvatar(
-                        backgroundImage:
-                            AssetImage(profileViewModel.iconMap[key]!),
+                        backgroundImage: AssetImage(profileViewModel.iconMap[key] ?? ''), // Manejar posible nulo
                         radius: 30,
                       ),
                       title: Text(key),
@@ -83,6 +81,7 @@ class _CarteraScreenState extends State<CarteraScreen> {
                             MaterialPageRoute(
                               builder: (context) => MonedaPage(
                                 monedaNombre: key,
+                                symbol: profileViewModel.profile.monedas[key]?['symbol'] ?? '', // Manejar posible nulo
                               ),
                             ),
                           );
