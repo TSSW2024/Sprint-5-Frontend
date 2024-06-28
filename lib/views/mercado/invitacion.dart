@@ -11,7 +11,8 @@ class InvitacionScreen extends StatefulWidget {
 class _InvitacionScreenState extends State<InvitacionScreen> {
   late Timer _timer;
   Duration _duration = Duration(days: 5); // Duración inicial de 5 días
-  double referidosUsadosPorcentaje = 0.0; // Porcentaje inicial de referidos usados
+  double referidosUsadosPorcentaje =
+      0.0; // Porcentaje inicial de referidos usados
   bool _puedeRetirar = false; // Indicador para habilitar el botón de retirar
   final String userId = "209415"; // ID único de usuario
   final String appLink = "https://utemtx.web.app/"; // Enlace de invitación base
@@ -74,7 +75,10 @@ class _InvitacionScreenState extends State<InvitacionScreen> {
             children: [
               Text(
                 'Invita a tus amigos',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.blue),
+                style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.blue),
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 20),
@@ -160,9 +164,12 @@ class _InvitacionScreenState extends State<InvitacionScreen> {
                             PieChartData(
                               sections: [
                                 PieChartSectionData(
-                                  color: _puedeRetirar ? Colors.yellow : Colors.blue,
+                                  color: _puedeRetirar
+                                      ? Colors.yellow
+                                      : Colors.blue,
                                   value: referidosUsadosPorcentaje * 100,
-                                  title: '${(referidosUsadosPorcentaje * 100).toStringAsFixed(0)}%', 
+                                  title:
+                                      '${(referidosUsadosPorcentaje * 100).toStringAsFixed(0)}%',
                                   radius: 40,
                                   titleStyle: TextStyle(
                                     fontSize: 16,
@@ -173,7 +180,8 @@ class _InvitacionScreenState extends State<InvitacionScreen> {
                                 if (referidosUsadosPorcentaje < 1.0)
                                   PieChartSectionData(
                                     color: Colors.grey.shade300,
-                                    value: (1 - referidosUsadosPorcentaje) * 100,
+                                    value:
+                                        (1 - referidosUsadosPorcentaje) * 100,
                                     title: '',
                                     radius: 30,
                                   ),
@@ -199,7 +207,8 @@ class _InvitacionScreenState extends State<InvitacionScreen> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue,
                       foregroundColor: Colors.white,
-                      padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
+                      padding: EdgeInsets.symmetric(
+                          vertical: 16.0, horizontal: 24.0),
                     ),
                   ),
                 ],
