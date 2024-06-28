@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 import 'dart:async';
 
 class InvitacionScreen extends StatefulWidget {
@@ -9,7 +10,11 @@ class InvitacionScreen extends StatefulWidget {
 
 class _InvitacionScreenState extends State<InvitacionScreen> {
   late Timer _timer;
-  Duration _duration = Duration(hours: 1); // Ejemplo de duración de 1 hora
+  Duration _duration = Duration(days: 5); // Duración inicial de 5 días
+  double referidosUsadosPorcentaje = 0.0; // Porcentaje inicial de referidos usados
+  bool _puedeRetirar = false; // Indicador para habilitar el botón de retirar
+  final String userId = "209415"; // ID único de usuario
+  final String appLink = "https://utemtx.web.app/"; // Enlace de invitación base
 
   @override
   void initState() {
@@ -35,99 +40,185 @@ class _InvitacionScreenState extends State<InvitacionScreen> {
     super.dispose();
   }
 
+  void _incrementarPorcentaje() {
+    setState(() {
+      referidosUsadosPorcentaje += 0.1;
+      if (referidosUsadosPorcentaje >= 1.0) {
+        referidosUsadosPorcentaje = 1.0;
+        _puedeRetirar = true;
+      }
+    });
+  }
+
+  void _retirar(BuildContext context) {
+    if (_puedeRetirar) {
+      // Lógica para retirar aquí
+      // Mostrar mensaje flotante de retirado con éxito
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('¡Retirado con éxito!'),
+          duration: Duration(seconds: 2),
+        ),
+      );
+    }
+  }
+
+  void _mostrarModalInvitacion(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          padding: EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'Invita a tus amigos',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.blue),
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: 20),
+              QrImageView(
+                data: appLink + userId,
+                size: 200.0,
+                backgroundColor: Colors.white,
+              ),
+              SizedBox(height: 20),
+              SelectableText(
+                'ID de referido: $userId',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 10),
+              SelectableText(
+                appLink + userId,
+                style: TextStyle(fontSize: 16, color: Colors.blue),
+              ),
+              SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  IconButton(
+                    icon: Icon(Icons.share),
+                    onPressed: () {
+                      // Lógica para compartir en redes sociales
+                    },
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.share),
+                    onPressed: () {
+                      // Lógica para compartir en redes sociales
+                    },
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.share),
+                    onPressed: () {
+                      // Lógica para compartir en redes sociales
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    double referidosUsadosPorcentaje = 0.5; // Ejemplo de porcentaje usado
     return Scaffold(
       appBar: AppBar(),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Container(
-             padding: const EdgeInsets.symmetric(horizontal: 20), // Ajusta el padding según sea necesario
-                  child: RichText(
-                    textAlign: TextAlign.center, // Centra el texto
-                    text: const TextSpan(
-                      text: '¡¡Invita a tus amigos para reclamar este premio!!',
-                      style: TextStyle(
-                        fontSize: 24,
-                        color: Colors.blue,
-                        height: 1.5, // Ajusta el espacio entre líneas si es necesario
-                      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    '¡Invita a tus amigos y gana premios!',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blue,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(height: 20),
+                  GestureDetector(
+                    onTap: () => _retirar(context),
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.8,
+                          height: MediaQuery.of(context).size.width * 0.8,
+                          child: PieChart(
+                            PieChartData(
+                              sections: [
+                                PieChartSectionData(
+                                  color: _puedeRetirar ? Colors.yellow : Colors.blue,
+                                  value: referidosUsadosPorcentaje * 100,
+                                  title: '${(referidosUsadosPorcentaje * 100).toStringAsFixed(0)}%', 
+                                  radius: 40,
+                                  titleStyle: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                if (referidosUsadosPorcentaje < 1.0)
+                                  PieChartSectionData(
+                                    color: Colors.grey.shade300,
+                                    value: (1 - referidosUsadosPorcentaje) * 100,
+                                    title: '',
+                                    radius: 30,
+                                  ),
+                              ],
+                              centerSpaceRadius: 100,
+                            ),
+                          ),
+                        ),
+                        if (referidosUsadosPorcentaje == 1.0)
+                          Image.asset(
+                            'assets/images/bitcoin.png',
+                            width: 80,
+                            height: 80,
+                          ),
+                      ],
                     ),
                   ),
-                ),
-            const Text(
-              'Invitaciones enviadas: 0', // Reemplaza 0 con la variable que maneja el contador
-              style: TextStyle(
-                fontSize: 18, // Tamaño del texto para el contador
-                color: Colors.black, // Asume que quieres un color de texto estándar
-              ),
-            ),
-            Container(
-              width: 200,
-              height: 200,
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  PieChart(
-                      PieChartData(
-                        pieTouchData: PieTouchData(touchCallback: (FlTouchEvent event, PieTouchResponse? pieTouchResponse) {
-                          // Opcional: Añade acciones al tocar las secciones del gráfico
-                        }),
-                        borderData: FlBorderData(
-                          show: false, 
-                        ),
-                        sectionsSpace: 2, 
-                        centerSpaceRadius: 100, 
-                        sections: [
-                          PieChartSectionData(
-                            color: Color(0xFF87CEEB), 
-                            value: referidosUsadosPorcentaje * 100,
-                            title: '${(referidosUsadosPorcentaje * 100).toStringAsFixed(0)}%',
-                            radius: 30,
-                            titleStyle: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                            ),
-                            badgePositionPercentageOffset: .98,
-                          ),
-                          PieChartSectionData(
-                            color: Color(0xFFB0C4DE), 
-                            value: (1 - referidosUsadosPorcentaje) * 100,
-                            title: '',
-                            radius: 25,
-                          ),
-                        ],
-                      ),
-                      swapAnimationDuration: Duration(milliseconds: 150), // Duración de la animación
-                      swapAnimationCurve: Curves.linear, // Tipo de animación
+                  SizedBox(height: 20),
+                  ElevatedButton.icon(
+                    onPressed: () => _mostrarModalInvitacion(context),
+                    icon: Icon(Icons.share),
+                    label: Text('Invitar Amigos'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      foregroundColor: Colors.white,
+                      padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
                     ),
+                  ),
                 ],
               ),
             ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                // Acción para invitar amigos
-              },
-              style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.white, backgroundColor: Color(0xFF87CEFA),
-              ),
-              child: Text('Invitar Amigos'),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                Text(
+                  'Tiempo restante: ${_duration.inDays} días ${_duration.inHours % 24} horas ${(_duration.inMinutes % 60)} minutos',
+                  style: TextStyle(fontSize: 16, color: Colors.blue),
+                  textAlign: TextAlign.center,
+                ),
+              ],
             ),
-            SizedBox(height: 20),
-            Text(
-              'Próximo en: ${_duration.inHours}:${(_duration.inMinutes % 60).toString().padLeft(2, '0')}:${(_duration.inSeconds % 60).toString().padLeft(2, '0')}',
-              style: const TextStyle(
-              fontSize: 16,
-              color: Color(0xFF00008B),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
