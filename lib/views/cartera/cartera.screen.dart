@@ -29,6 +29,37 @@ class _CarteraScreenState extends State<CarteraScreen> {
 
     return Scaffold(
       appBar: AppBar(),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            AnuncioWidget(
+              titulo: anuncioSeleccionado['titulo']!,
+              subtitulo: anuncioSeleccionado['subtitulo']!,
+              imagenUrl: anuncioSeleccionado['icono']!,
+              url: anuncioSeleccionado['url']!,
+            ), // @moizefal4
+            SaldoWidget(saldo: saldototal),
+            dataMap.isNotEmpty
+                ? Padding(
+                    padding: const EdgeInsets.only(left: 50.0),
+                    child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: SizedBox(
+                            height: 200,
+                            width: 300,
+                            child: PieChart(
+                              dataMap: dataMap,
+                              colorList: pieColors,
+                              animationDuration:
+                                  const Duration(milliseconds: 800),
+                            ))))
+                : const Text('No tiene saldo'),
+            const Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Lista de monedas:',
+                style: TextStyle(fontSize: 20.0),
       body: SingleChildScrollView(
         child: Center(
           child: Column(
@@ -64,9 +95,9 @@ class _CarteraScreenState extends State<CarteraScreen> {
                   style: TextStyle(fontSize: 20.0),
                 ),
               ),
-              ListView.builder(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
+            ),
+            Expanded(
+              child: ListView.builder(
                 itemCount: dataMap.length,
                 itemBuilder: (context, index) {
                   String key = dataMap.keys.elementAt(index);
@@ -105,8 +136,8 @@ class _CarteraScreenState extends State<CarteraScreen> {
                   );
                 },
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

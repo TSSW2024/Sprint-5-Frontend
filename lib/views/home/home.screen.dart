@@ -6,7 +6,7 @@ import '../cartera/cartera.screen.dart';
 import '../profile/profile.screen.dart';
 import '../home/modal/modal.dart';
 import '../compra/compra_view.dart';
-import '../convertir/convertir_view.dart';
+import '../cartera/historial_transacciones.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -78,6 +78,12 @@ class HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text('Utem  TX'),
         actions: <Widget>[
+          IconButton(onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const historial_transacciones()),
+            );
+          }, icon: const Icon(Icons.history)),
           IconButton(
             icon: const Icon(Icons.person),
             onPressed: () {
