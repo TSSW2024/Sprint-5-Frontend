@@ -24,6 +24,8 @@ dependencies:
   firebase_core: ^2.31.1
   http: ^1.2.1 # Para hacer peticiones HTTP
   flutter_typeahead: ^4.8.0
+  shared_preferences: ^2.2.3
+  web_socket_channel: ^3.0.0
   
 
 dev_dependencies:

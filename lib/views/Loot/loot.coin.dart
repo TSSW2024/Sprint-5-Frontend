@@ -62,7 +62,7 @@ class _CryptoLootBoxState extends State<CryptoLootBox> {
       isSpinning = true;
     });
 
-    // Simulate the spinning effect by moving the carousel
+    
     final itemIndex = items.indexOf(item);
     final randomCycles =
         Random().nextInt(5) + 5; // Random cycles between 5 and 10
@@ -76,7 +76,7 @@ class _CryptoLootBoxState extends State<CryptoLootBox> {
     )
         .then((_) {
       setState(() {
-        selectedItem = item; // Show the result after spinning
+        selectedItem = item; 
         isSpinning = false;
       });
     });
@@ -89,15 +89,37 @@ class _CryptoLootBoxState extends State<CryptoLootBox> {
       children: <Widget>[
        Row(
          children: [
-           const Spacer(flex: 2,), // Pushes the text to the center
+           const Spacer(flex: 2,),
             const Text(
               'Loot',
               style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
               
             ),
-           const Spacer(), // Pushes the button to the right
+           const Spacer(), 
+           IconButton(onPressed: (){
+            //muestra un show dialog que muestra un mensaje que se ha suscrito al loot cada 8 horas
+            //funcion pub/sub gcp
+            
+            showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  title: const Text('Subscripción'),
+                  content: const Text('Te has suscrito al loot, recibirás notificaciones cada 8 horas'),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: const Text('Cerrar'),
+                    ),
+                  ],
+                );
+              },
+            );
+           }, icon: const Icon(Icons.notifications)),
            Padding(
-             padding: const EdgeInsets.only(right: 32),
+             padding: const EdgeInsets.only(right: 10),
              child: IconButton(
                icon: const Icon(Icons.info),
                onPressed: () {
@@ -112,7 +134,7 @@ class _CryptoLootBoxState extends State<CryptoLootBox> {
                              .map((item) => ListTile(
                                   leading: Image.asset(
                                     item.imageUrl,
-                                    height: 50, // Adjust the height as desired
+                                    height: 50, 
                                   ),
                                    title: Text(item.name),
                                    trailing: Text('${item.chance * 100}%'),

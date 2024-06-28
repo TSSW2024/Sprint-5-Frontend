@@ -21,11 +21,26 @@ class AuthViewModel extends ChangeNotifier {
         _isAuthenticated = true;
         _errorMessage = null;
       } else {
-        _errorMessage = 'Credenciales incorrectas';
+        _errorMessage = "Credenciales incorrectas";
         _isAuthenticated = false;
       }
     } catch (e) {
-      _handleError('Error al iniciar sesión');
+      _errorMessage = "Error al iniciar sesión";
+    } finally {
+      _stopLoading();
+    }
+  }
+
+  Future<void> Register(String email, String password) async {
+    _startLoading();
+    try {
+      if (await _authService.register(email, password)) {
+        _errorMessage = "Usuario registrado";
+      } else {
+        _errorMessage = "Error al registrar usuario";
+      }
+    } catch (e) {
+      _errorMessage = "Error al registrar usuario";
     } finally {
       _stopLoading();
     }
@@ -38,7 +53,37 @@ class AuthViewModel extends ChangeNotifier {
       _isAuthenticated = false;
       _errorMessage = null;
     } catch (e) {
-      _handleError('Error al cerrar sesión');
+      _errorMessage = "Error al cerrar sesión";
+    } finally {
+      _stopLoading();
+    }
+  }
+
+  Future<void> validateToken() async {
+    _startLoading();
+    try {
+      if (await _authService.validateToken()) {
+        _isAuthenticated = true;
+        _errorMessage = null;
+      } else {
+        _isAuthenticated = false;
+        _errorMessage = "Token inválido";
+        _authService.signOut();
+      }
+    } catch (e) {
+      _errorMessage = "Error al validar token";
+    } finally {
+      _stopLoading();
+    }
+  }
+
+  Future<void> forgotPassword(String email) async {
+    _startLoading();
+    try {
+      await _authService.forgotPassword(email);
+      _errorMessage = "Correo de recuperacion enviado";
+    } catch (e) {
+      _errorMessage = "Error al enviar correo de recuperacion";
     } finally {
       _stopLoading();
     }
@@ -54,13 +99,12 @@ class AuthViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void _handleError(String message) {
-    _errorMessage = message;
+  void _handlerError(String mensaje) {
+    _errorMessage = mensaje;
     _stopLoading();
   }
 
-  void clearErrorMessage() {
+   void clearErrorMessage() {
     _errorMessage = null;
-    notifyListeners();
   }
 }
