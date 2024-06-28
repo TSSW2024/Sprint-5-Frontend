@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'cripto_search.dart';
+import 'invitacion.dart';
 
 final List _monedas = [
   {
@@ -92,6 +94,21 @@ class MercadoScreen extends StatelessWidget {
               )),
         ],
       )),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Acción al presionar el botón
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => InvitacionScreen()),
+          );
+        },
+        backgroundColor: Colors.yellowAccent,
+        child: SvgPicture.asset(
+          'assets/images/gift-svgrepo-com (2).svg',
+          width: 50, // Ajusta el tamaño según sea necesario
+          height: 50, // Ajusta el tamaño según sea necesario
+        ), // Icono del botón
+      ),
     );
   }
 
