@@ -1,9 +1,12 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'cripto_search.dart';
 import 'seguimiento.dart';
+import 'package:flutter_svg/svg.dart';
+import 'cripto_search.dart';
+import 'invitacion.dart';
+
 
 final List _monedas = [
   {
@@ -52,6 +55,80 @@ class MercadoScreen extends StatelessWidget {
             SeguimientoTab(),
           ],
         ),
+      ),
+      body: Center(
+          child: Column(
+        children: [
+          DefaultTabController(
+              length: 3,
+              child: Column(
+                children: [
+                  const Row(
+                    children: [
+                      Text("Monedas 1.0", style: TextStyle(fontSize: 24)),
+                      SizedBox(width: 10), // Espacio entre los elementos
+                      Expanded(
+                        child: CryptoTypeaheadWidget(),
+                      ),
+                    ],
+                  ),
+                  Container(
+                    color: Colors.transparent,
+                    child: TabBar(
+                      overlayColor:
+                          MaterialStateProperty.all(Colors.transparent),
+                      indicatorSize: TabBarIndicatorSize.tab,
+                      indicator: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        border: Border.all(color: Colors.grey, width: 2),
+                      ),
+                      indicatorPadding: const EdgeInsets.all(10),
+                      tabs: const [
+                        Tab(
+                          text: 'Top',
+                        ),
+                        Tab(
+                          text: 'Top Decliners',
+                        ),
+                        Tab(text: 'Nuevos'),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: altoActual * 0.5,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TabBarView(
+                        children: [
+                          ListView.builder(
+                              itemCount: _monedas.length,
+                              itemBuilder: (context, index) {
+                                return listaMonedas(index);
+                              }),
+                          const Text('Top Decliners'),
+                          const Text('Nuevos'),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              )),
+        ],
+      )),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Acción al presionar el botón
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => InvitacionScreen()),
+          );
+        },
+        backgroundColor: Colors.yellowAccent,
+        child: SvgPicture.asset(
+          'assets/images/gift-svgrepo-com (2).svg',
+          width: 50, // Ajusta el tamaño según sea necesario
+          height: 50, // Ajusta el tamaño según sea necesario
+        ), // Icono del botón
       ),
     );
   }

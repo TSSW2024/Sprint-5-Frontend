@@ -76,7 +76,7 @@ class HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Utem Trading'),
+        title: const Text('Utem  TX'),
         actions: <Widget>[
           IconButton(onPressed: () {
             Navigator.push(

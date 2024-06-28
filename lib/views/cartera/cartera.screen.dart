@@ -17,7 +17,8 @@ class _CarteraScreenState extends State<CarteraScreen> {
   @override
   Widget build(BuildContext context) {
     var profileViewModel = Provider.of<ProfileViewModel>(context);
-    var dataMap = profileViewModel.profile.monedas;
+    var dataMap = profileViewModel.profile.monedas.map((key, value) => MapEntry(
+        key, value['value'].toDouble())); // Convertir a Map<String, double>
     var saldototal = profileViewModel.profile.saldototal;
 
     List<Color> pieColors = [
@@ -59,6 +60,40 @@ class _CarteraScreenState extends State<CarteraScreen> {
               child: Text(
                 'Lista de monedas:',
                 style: TextStyle(fontSize: 20.0),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              AnuncioWidget(
+                titulo: anuncioSeleccionado['titulo']!,
+                subtitulo: anuncioSeleccionado['subtitulo']!,
+                imagenUrl: anuncioSeleccionado['icono']!,
+                url: anuncioSeleccionado['url']!,
+              ), // @moizefal4
+              SaldoWidget(saldo: saldototal),
+              dataMap.isNotEmpty
+                  ? Padding(
+                      padding: const EdgeInsets.only(left: 50.0),
+                      child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: SizedBox(
+                              height: 200,
+                              width: 300,
+                              child: PieChart(
+                                dataMap: dataMap.cast<String,
+                                    double>(), // Cast a Map<String, double>
+                                colorList: pieColors,
+                                animationDuration:
+                                    const Duration(milliseconds: 800),
+                              ))))
+                  : const Text('No tiene saldo'),
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Lista de monedas:',
+                  style: TextStyle(fontSize: 20.0),
+                ),
               ),
             ),
             Expanded(
@@ -69,8 +104,9 @@ class _CarteraScreenState extends State<CarteraScreen> {
                   return Card(
                     child: ListTile(
                       leading: CircleAvatar(
-                        backgroundImage:
-                            AssetImage(profileViewModel.iconMap[key]!),
+                        backgroundImage: AssetImage(
+                            profileViewModel.iconMap[key] ??
+                                ''), // Manejar posible nulo
                         radius: 30,
                       ),
                       title: Text(key),
@@ -81,14 +117,20 @@ class _CarteraScreenState extends State<CarteraScreen> {
                             MaterialPageRoute(
                               builder: (context) => MonedaPage(
                                 monedaNombre: key,
+                                symbol: profileViewModel.profile.monedas[key]
+                                        ?['symbol'] ??
+                                    '', // Manejar posible nulo
                               ),
                             ),
                           );
                         },
                         style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(Color.fromARGB(255, 23, 206, 54)),
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              Color.fromARGB(255, 23, 206, 54)),
                         ),
-                        child: const Text("Vender", style: TextStyle(color: Colors.white, fontSize: 13.9)),
+                        child: const Text("Vender",
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 13.9)),
                       ),
                     ),
                   );
