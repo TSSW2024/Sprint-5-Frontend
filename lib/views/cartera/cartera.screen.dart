@@ -49,7 +49,6 @@ class _CarteraScreenState extends State<CarteraScreen> {
                               height: 200,
                               width: 300,
                               child: PieChart(
-                                dataMap: dataMap.cast<String, double>(), // Cast a Map<String, double>
                                 colorList: pieColors,
                                 animationDuration:
                                     const Duration(milliseconds: 800),

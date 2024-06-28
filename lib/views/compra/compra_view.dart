@@ -1,4 +1,3 @@
-// lib/views/compra/compra_view.dart
 import 'package:flutter/material.dart';
 import '../../widgets/numeric_keyboard.dart';
 import '../../widgets/quick_buttons.dart';
@@ -13,9 +12,11 @@ class _CompraViewState extends State<CompraView> {
 
   @override
   Widget build(BuildContext context) {
+    final String moneda = ModalRoute.of(context)!.settings.arguments as String;
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Compra de Monedas'),
+        title: Text('Compra de $moneda'),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {

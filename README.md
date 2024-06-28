@@ -1,25 +1,26 @@
-# Sprint-3 : se llevara a cabo la modificacion de la app eliminado opciones redundantes y desarrollando un entorno de gambling 
-Este sprint, nuestro equipo de desarrollo se enfocara en implementar mejoras en el diseño ya hecho y agregando nuevas funciones a cada vista ademas de mantener un app mas segura
-## Vista Opcion - Mercado 
-Se quiere que cuando se ingrese a esta vista tenga el titulo de la vista.
-- **Lupa:** Implementacion de una funcion de busqueda donde se desea que tenga la opcion de autocompletar
-- **Modificacion:** Se requiere trabajar en mejoras de manera visual a lo ya hecho teniendo una extensa lista de monedas con sus respectivo valor y su icono.
-- **Topbar:** Se Requiere mnejorar esta opcion 
+# Sprint 4: Implementación de Pago y Pruebas Finales
 
-## Vista Opcion - Cartera
-Se quiere que cuando se ingrese a esta vista tenga el titulo de la vista.
-- **Grafico:** Implementacion de un grafico dando porcentajes de las monedas obtenidas
-- **Saldo:** Implementacion de nueva funcionalidad
-- **Lista de moneda:** implementacion de la lista de monedas en cartera
+## Descripción
+En este sprint, nos centraremos en la implementación de la funcionalidad de pago simulado y en la realización de pruebas exhaustivas para asegurar la calidad y seguridad de la aplicación.
 
-## Vista opcion - Usuario
-- **Mejorar:** Se busca terminar la vista aplicando mejoras significativas
+#### Implementación de Pago Simulado
+- **Desarrollo de la Funcionalidad de Pago**: Crear una interfaz que permita a los usuarios realizar pagos en pesos chilenos y mostrar el equivalente en criptomoneda según las transacciones de diferentes bancos.
+- **Integración con Bancos**: Establecer conexiones simuladas con APIs bancarias para obtener tasas de conversión actualizadas.
+- **Pruebas de Pago**: Verificar que los pagos y conversiones se muestren correctamente y que las tasas de conversión sean precisas.
 
-## Vista opcion - Boton logo 
+#### Pruebas de la Aplicación
+- **Pruebas de Seguridad**: Realizar pruebas de penetración y buscar vulnerabilidades que puedan comprometer la seguridad de la aplicación.
+- **Pruebas de Rendimiento**: Asegurar que la aplicación funcione de manera fluida y sin retrasos, incluso bajo carga.
+- **Pruebas de Usabilidad**: Obtener feedback de usuarios reales para mejorar la interfaz y la experiencia del usuario.
 
-- **Opciones:** se implementaran 2 botones unicos 
-1. **Opcion loot gratis:** se implementara una nueva pagina donde se econtrara una caja con su valor
-2. **Opcion loot pagada:** se implementara una nueva pagina donde se econtrara una caja con su valor
+#### Corrección de Errores y Ajustes
+- **Feedback de Pruebas**: Recopilar y analizar el feedback obtenido durante las pruebas.
+- **Corrección de Errores**: Identificar y solucionar cualquier problema técnico encontrado.
+- **Ajustes Finales**: Realizar mejoras en la interfaz y en la funcionalidad basadas en las sugerencias de los usuarios.
 
-## Funcionalidad notificaciones 
-Se requiere generar notificacion en la app para atraer mejor atencion .
+### Resultados Esperados
+- Una funcionalidad de pago simulado completamente operativa y segura.
+- Una aplicación que haya pasado todas las pruebas de calidad necesarias.
+- Una experiencia de usuario mejorada y lista para el lanzamiento.
+
+

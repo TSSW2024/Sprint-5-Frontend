@@ -13,6 +13,8 @@ import 'services/auth.service.dart';
 
 import 'views/Loot/loot.dart';
 import 'views/Loot/loot.Free.dart';
+import 'views/compra/compra_view.dart';
+import 'views/convertir/convertir_view.dart'; // Importa la nueva vista de conversión
 
 void main() {
   runApp(const MainApp());
@@ -39,6 +41,8 @@ class MainApp extends StatelessWidget {
           '/home': (context) => const HomeScreen(),
           '/Loot': (context) => const Loot(),
           '/LootFree': (context) => const LootFree(),
+          '/compra': (context) => CompraView(),
+          '/convertir': (context) => ConvertirView(),
         },
       ),
     );
