@@ -2,11 +2,10 @@ import 'package:ejemplo_1/widgets/social.login.dart';
 import 'package:ejemplo_1/widgets/text.form.global.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import 'package:flutter_svg/svg.dart';
 import '../../viewmodels/auth.viewmodel.dart';
 import '../../widgets/elevated_button.widget.dart';
 import '../../widgets/loading.widget.dart';
-//// import '../../widgets/text_field.widget.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -77,13 +76,26 @@ class LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 20),
                 Container(
                   alignment: Alignment.center,
-                  child: const Text(
-                    'Logo',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 35,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SvgPicture.asset(
+                        'assets/images/LogoP.svg',
+                        height: 50,
+                        width: 50,
+                      ),
+                      const SizedBox(
+                          width:
+                              8), // Añade un espacio entre el icono y el texto
+                      const Text(
+                        'UtemTX',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 35,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 const SizedBox(height: 50),
