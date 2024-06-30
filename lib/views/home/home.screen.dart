@@ -47,12 +47,6 @@ class HomeScreenState extends State<HomeScreen> {
           return DescubrirModal();
         },
       );
-    } else if (index == 3) {
-      // Verifica si el índice es el de compra
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => CompraView()),
-      );
     } else {
       setState(() {
         _selectedIndex = index;
@@ -78,12 +72,15 @@ class HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text('Utem  TX'),
         actions: <Widget>[
-          IconButton(onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const historial_transacciones()),
-            );
-          }, icon: const Icon(Icons.history)),
+          IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const historial_transacciones()),
+                );
+              },
+              icon: const Icon(Icons.history)),
           IconButton(
             icon: const Icon(Icons.person),
             onPressed: () {

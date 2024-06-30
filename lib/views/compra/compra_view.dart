@@ -3,6 +3,10 @@ import '../../widgets/numeric_keyboard.dart';
 import '../../widgets/quick_buttons.dart';
 
 class CompraView extends StatefulWidget {
+  final String monedaName;
+
+  const CompraView({Key? key, required this.monedaName}) : super(key: key);
+
   @override
   _CompraViewState createState() => _CompraViewState();
 }
@@ -12,8 +16,7 @@ class _CompraViewState extends State<CompraView> {
 
   @override
   Widget build(BuildContext context) {
-    final String moneda = ModalRoute.of(context)!.settings.arguments as String;
-
+    final String moneda = widget.monedaName;
     return Scaffold(
       appBar: AppBar(
         title: Text('Compra de $moneda'),
@@ -24,7 +27,7 @@ class _CompraViewState extends State<CompraView> {
           },
         ),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
